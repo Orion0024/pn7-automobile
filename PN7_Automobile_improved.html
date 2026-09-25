@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth scroll-pt-24">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0f172a">
+    <meta name="robots" content="index,follow">
+    <title>PN7 Automobile | Premium Car Showroom in Mandalay</title>
+    <meta name="description" content="PN7 Automobile — Mandalay's premium car showroom. Sinotruk, Jetour, Beijing and Forthing vehicles with bank installments and trade-in services.">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="PN7 Automobile | Premium Car Showroom">
+    <meta property="og:description" content="Explore our exclusive collection of premium vehicles.">
+    <meta property="og:locale" content="en_MM">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%9A%97%3C/text%3E%3C/svg%3E">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Myanmar:wght@400;500;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Poppins', 'Noto Sans Myanmar', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            background-image: radial-gradient(circle at 10% 20%, rgb(15,23,42) 0%, rgb(25,33,50) 40%, rgb(15,23,42) 100%);
+            background-attachment: fixed;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+
+        .glass-card {
+            background: rgba(255,255,255,0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.2);
+            transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+        }
+        .glass-card--interactive:hover,
+        .glass-card--interactive:focus-within {
+            transform: translateY(-5px);
+            border-color: rgba(255,255,255,0.2);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+        }
+        .glass-nav {
+            background: rgba(15,23,42,0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .filter-btn { transition: background-color .2s ease, border-color .2s ease, color .2s ease, box-shadow .2s ease; }
+        .filter-btn.is-active {
+            border-color: #3b82f6; background-color: #2563eb; color: #fff;
+            box-shadow: 0 0 15px rgba(37,99,235,0.3);
+        }
+
+        #modal-main-image { transition: opacity 150ms ease, transform 500ms ease; }
+        #modal-main-image.is-fading { opacity: 0.35; }
+
+        :focus-visible { outline: 2px solid #60a5fa; outline-offset: 3px; border-radius: 6px; }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .animate-spin { animation: spin 1s linear infinite; }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: .01ms !important;
+                transition-duration: .01ms !important;
+                scroll-behavior: auto !important;
+            }
+            .glass-card--interactive:hover { transform: none; }
+        }
+
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
+
+        #car-modal {
+            overflow-y: auto;
+        }
+
+        #modal-content {
+            max-height: 92vh;
+        }
+    </style>
+</head>
+<body class="min-h-screen relative overflow-x-hidden">
+
+    <a href="#showroom" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[200] focus:px-4 focus:py-2 focus:bg-blue-600 focus:text-white focus:rounded-lg">
+        Skip to showroom
+    </a>
+
+    <header class="fixed top-0 w-full z-50 glass-nav">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <button type="button" id="logo-btn" class="flex-shrink-0 flex items-center gap-2" aria-label="PN7 Automobile — back to top">
+                    <span class="material-symbols-outlined text-blue-400 text-3xl" aria-hidden="true">directions_car</span>
+                    <span class="font-bold text-2xl tracking-wider text-white">PN7</span>
+                    <span class="font-light text-sm tracking-widest text-slate-400 mt-1 uppercase hidden sm:block">Automobile</span>
+                </button>
+
+                <nav class="hidden md:flex space-x-8" aria-label="Main navigation">
+                    <a href="#home" class="text-slate-300 hover:text-white transition-colors text-sm font-medium">Home</a>
+                    <a href="#showroom" class="text-slate-300 hover:text-white transition-colors text-sm font-medium">Showroom</a>
+                    <a href="#services" class="text-slate-300 hover:text-white transition-colors text-sm font-medium">Services</a>
+                    <a href="#contact" class="text-slate-300 hover:text-white transition-colors text-sm font-medium">Contact</a>
+                </nav>
+
+                <div class="md:hidden flex items-center">
+                    <button type="button" id="mobile-menu-btn"
+                            class="text-slate-300 hover:text-white focus:outline-none"
+                            aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+                        <span class="material-symbols-outlined text-3xl" aria-hidden="true">menu</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden glass-card mx-4 mb-4 rounded-xl">
+            <nav class="px-4 pt-2 pb-4 space-y-1" aria-label="Mobile navigation">
+                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-white/5">Home</a>
+                <a href="#showroom" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-white/5">Showroom</a>
+                <a href="#services" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-white/5">Services</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-white/5">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="pt-32 pb-16 md:pt-40 md:pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex flex-col items-center text-center">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-300 text-xs font-medium uppercase tracking-widest mb-6">
+                <span class="material-symbols-outlined text-sm" aria-hidden="true">stars</span>
+                Premium Dealership
+            </div>
+            <h1 class="text-4xl md:text-6xl font-bold tracking-tight mb-6 leading-tight">
+                Discover Your Next <br/>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Dream Drive</span>
+            </h1>
+            <p class="mt-4 max-w-2xl text-lg text-slate-400 font-light mb-10 leading-relaxed">
+                Welcome to PN7 Automobile. Explore our exclusive collection of premium vehicles with unparalleled service, easy installments, and seamless trade-ins.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#showroom" class="px-8 py-3 rounded-full bg-white text-slate-900 font-medium hover:bg-slate-200 transition-colors flex items-center gap-2 shadow-[0_0_20px_rgba(255,255,255,0.2)]">
+                    View Showroom
+                    <span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span>
+                </a>
+                <a href="#contact" class="px-8 py-3 rounded-full glass-card text-white font-medium hover:bg-white/10 transition-colors flex items-center gap-2">
+                    Contact Us
+                </a>
+            </div>
+        </section>
+
+        <section id="showroom" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-6 gap-4">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-3">Our Collection</h2>
+                    <p class="text-slate-400 font-light">Explore our lineup of cutting-edge SUVs and vehicles.</p>
+                </div>
+
+                <div class="glass-card flex items-center px-4 py-2 rounded-full w-full md:w-auto gap-2">
+                    <label for="search-input" class="sr-only">Search car models</label>
+                    <span class="material-symbols-outlined text-slate-400" aria-hidden="true">search</span>
+                    <input type="search" id="search-input" placeholder="Search models..." autocomplete="off"
+                           class="bg-transparent border-none outline-none text-sm text-white w-full md:w-40 placeholder-slate-500">
+
+                    <span id="data-status" class="text-xs font-medium text-slate-400 hidden sm:inline"></span>
+                    <button type="button" id="refresh-btn" aria-label="Refresh vehicle data"
+                            class="ml-1 w-8 h-8 rounded-full flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition-colors">
+                        <span class="material-symbols-outlined text-[20px]" aria-hidden="true">refresh</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap gap-2 mb-6" id="filter-container" role="group" aria-label="Filter by brand">
+                <button type="button" class="filter-btn is-active px-5 py-2 rounded-full border border-blue-500 bg-blue-600 text-white text-sm font-medium" data-filter="All" aria-pressed="true">All</button>
+                <button type="button" class="filter-btn px-5 py-2 rounded-full border border-white/10 glass-card text-slate-300 text-sm font-medium hover:bg-white/10" data-filter="Sinotruk" aria-pressed="false">Sinotruk</button>
+                <button type="button" class="filter-btn px-5 py-2 rounded-full border border-white/10 glass-card text-slate-300 text-sm font-medium hover:bg-white/10" data-filter="Jetour" aria-pressed="false">Jetour</button>
+                <button type="button" class="filter-btn px-5 py-2 rounded-full border border-white/10 glass-card text-slate-300 text-sm font-medium hover:bg-white/10" data-filter="Beijing" aria-pressed="false">Beijing</button>
+                <button type="button" class="filter-btn px-5 py-2 rounded-full border border-white/10 glass-card text-slate-300 text-sm font-medium hover:bg-white/10" data-filter="Forthing" aria-pressed="false">Forthing</button>
+            </div>
+
+            <p id="results-status" class="sr-only" aria-live="polite"></p>
+
+            <div id="car-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <p class="col-span-full text-center text-slate-400 py-10">Loading vehicles…</p>
+            </div>
+        </section>
+
+        <section id="services" class="py-20 relative before:absolute before:inset-0 before:bg-slate-900/50 before:-z-10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Our Services</h2>
+                <p class="text-slate-400 mb-16 font-light max-w-2xl mx-auto">We provide exceptional services to make your car buying experience smooth and hassle-free.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    <div class="glass-card p-8 rounded-2xl flex flex-col items-center text-center group">
+                        <div class="w-16 h-16 rounded-full bg-blue-500/20 flex items-center justify-center mb-6 text-blue-400 group-hover:scale-110 transition-transform">
+                            <span class="material-symbols-outlined text-3xl" aria-hidden="true">sync_alt</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Car Trade-In</h3>
+                        <p lang="my" class="text-slate-300 font-light leading-relaxed">
+                            ကားချင်းအလဲအထပ် ဝန်ဆောင်မှုရရှိနိုင်ပါသည်။ လူကြီးမင်းတို့၏ ကားဟောင်းရဲ့ ကာလတန်ဖိုးကိုသင့်တင့်စွာ အကဲဖြတ်ပေးပါသည်။
+                        </p>
+                    </div>
+
+                    <div class="glass-card p-8 rounded-2xl flex flex-col items-center text-center group">
+                        <div class="w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center mb-6 text-green-400 group-hover:scale-110 transition-transform">
+                            <span class="material-symbols-outlined text-3xl" aria-hidden="true">account_balance</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Bank Installment</h3>
+                        <p lang="my" class="text-slate-300 font-light leading-relaxed">
+                            Ayarwaddy Bank, Yoma Bank တို့နှင့် ချိတ်ဆက်ပြီး အရစ်ကျပေးချေနိုင်ပါသည်။
+                            <span class="block mt-2 text-sm text-blue-300 bg-blue-500/10 py-1 px-3 rounded-full">
+                                * Down Payment 50% ပေးချေရပါမည်
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact" class="pt-20 pb-10 border-t border-white/10 relative overflow-hidden">
+        <div class="absolute bottom-0 right-0 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl -z-10 translate-x-1/3 translate-y-1/3" aria-hidden="true"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+                <div class="space-y-4">
+                    <div class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-blue-400 text-3xl" aria-hidden="true">directions_car</span>
+                        <span class="font-bold text-2xl tracking-wider text-white">PN7 Automobile</span>
+                    </div>
+                    <p class="text-slate-400 font-light text-sm leading-relaxed max-w-sm">
+                        Your trusted partner in finding the perfect vehicle. We deliver quality, reliability, and excellent customer service.
+                    </p>
+                </div>
+
+                <div class="space-y-6">
+                    <h2 class="text-lg font-semibold tracking-wide">Contact Us</h2>
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-3 text-slate-300">
+                            <span class="material-symbols-outlined text-slate-400 mt-0.5" aria-hidden="true">location_on</span>
+                            <address class="text-sm font-light leading-relaxed not-italic">
+                                No.(413), 62nd Street,<br>
+                                Between 35th &amp; 36th Streets,<br>
+                                MaharAungMyay Township, Mandalay.
+                            </address>
+                        </div>
+                        <div class="flex items-center gap-3 text-slate-300">
+                            <span class="material-symbols-outlined text-slate-400" aria-hidden="true">call</span>
+                            <div class="flex flex-col">
+                                <a id="footer-phone1" href="tel:+959403718599" class="text-sm font-light hover:text-blue-400 transition-colors">09403718599</a>
+                                <a id="footer-phone2" href="tel:+959761112344" class="text-sm font-light hover:text-blue-400 transition-colors">09761112344</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <h2 class="text-lg font-semibold tracking-wide">Opening Hours</h2>
+                    <div class="glass-card p-5 rounded-xl inline-block">
+                        <div class="flex items-center gap-3 text-slate-300 mb-2">
+                            <span class="material-symbols-outlined text-blue-400" aria-hidden="true">schedule</span>
+                            <span class="font-medium">Open Daily</span>
+                        </div>
+                        <p id="footer-hours" class="text-2xl font-light text-white ml-9">09:00 AM – 05:00 PM</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-16">
+                <h2 class="text-lg font-semibold tracking-wide text-center mb-6">Get in Touch</h2>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-3xl mx-auto">
+                    <a id="footer-call" href="tel:+959403718599" class="glass-card rounded-2xl p-4 flex flex-col items-center gap-2 hover:bg-white/5 transition-colors group">
+                        <div class="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400 group-hover:scale-110 transition-transform">
+                            <span class="material-symbols-outlined text-2xl" aria-hidden="true">call</span>
+                        </div>
+                        <span class="text-sm font-medium text-white">Call</span>
+                    </a>
+
+                    <a id="footer-viber" href="https://viber.click/09403718599" target="_blank" rel="noopener" class="glass-card rounded-2xl p-4 flex flex-col items-center gap-2 hover:bg-white/5 transition-colors group">
+                        <div class="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 group-hover:scale-110 transition-transform">
+                            <span class="material-symbols-outlined text-2xl" aria-hidden="true">phone_in_talk</span>
+                        </div>
+                        <span class="text-sm font-medium text-white">Viber</span>
+                    </a>
+
+                    <a id="footer-whatsapp" href="https://wa.me/959403718599" target="_blank" rel="noopener" class="glass-card rounded-2xl p-4 flex flex-col items-center gap-2 hover:bg-white/5 transition-colors group">
+                        <div class="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center text-green-400 group-hover:scale-110 transition-transform">
+                            <span class="material-symbols-outlined text-2xl" aria-hidden="true">chat_bubble</span>
+                        </div>
+                        <span class="text-sm font-medium text-white">WhatsApp</span>
+                    </a>
+
+                    <a id="footer-messenger" href="https://m.me/PN7Automobile" target="_blank" rel="noopener" class="glass-card rounded-2xl p-4 flex flex-col items-center gap-2 hover:bg-white/5 transition-colors group">
+                        <div class="w-12 h-12 rounded-full bg-cyan-500/20 flex items-center justify-center text-cyan-400 group-hover:scale-110 transition-transform">
+                            <span class="material-symbols-outlined text-2xl" aria-hidden="true">forum</span>
+                        </div>
+                        <span class="text-sm font-medium text-white">Messenger</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div id="car-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 sm:p-6 opacity-0 transition-opacity duration-300" role="dialog" aria-modal="true" aria-labelledby="modal-car-title" aria-describedby="modal-description">
+        <div class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm" data-close-modal></div>
+
+        <div id="modal-content" tabindex="-1" class="relative w-full max-w-5xl glass-card bg-slate-900/90 border border-white/10 rounded-2xl overflow-hidden shadow-2xl flex flex-col md:flex-row transform scale-95 transition-transform duration-300">
+            <button type="button" id="modal-close-btn" data-close-modal class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-black/80 transition-colors backdrop-blur-md" aria-label="Close dialog">
+                <span class="material-symbols-outlined" aria-hidden="true">close</span>
+            </button>
+
+            <div class="w-full md:w-3/5 bg-black/40 p-4 sm:p-6 flex flex-col flex-shrink-0">
+                <div class="relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-black mb-4 group">
+                    <img id="modal-main-image" src="" alt="" width="800" height="600" decoding="async" class="w-full h-full object-cover group-hover:scale-105">
+                    <div class="absolute top-4 left-4 glass-card px-3 py-1 rounded-full text-xs font-medium text-white shadow-lg backdrop-blur-md">
+                        <span id="modal-view-label">Front View</span>
+                    </div>
+                </div>
+
+                <div class="flex gap-3 overflow-x-auto py-2" id="modal-thumbnails" role="group" aria-label="Vehicle photo angles"></div>
+            </div>
+
+            <div class="w-full md:w-2/5 p-6 sm:p-8 flex flex-col overflow-y-auto">
+                <div class="mb-6">
+                    <h2 id="modal-car-title" class="text-3xl font-bold text-white mb-2 leading-tight"></h2>
+                    <p id="modal-description" class="text-blue-400 text-sm font-medium tracking-wide uppercase">Premium Collection</p>
+                </div>
+
+                <div class="space-y-6 mb-8 flex-grow">
+                    <div class="glass-card rounded-xl p-5">
+                        <ul class="space-y-4 text-sm" id="modal-specs-list"></ul>
+                    </div>
+
+                    <div class="space-y-3">
+                        <h3 class="text-sm font-medium text-slate-300 uppercase tracking-wider">Features &amp; Highlights</h3>
+                        <ul class="space-y-2 text-slate-400 font-light text-sm">
+                            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-[16px] text-blue-400" aria-hidden="true">check_circle</span> Modern aesthetic design</li>
+                            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-[16px] text-blue-400" aria-hidden="true">check_circle</span> Advanced safety systems</li>
+                            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-[16px] text-blue-400" aria-hidden="true">check_circle</span> Spacious premium interior</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="pt-6 border-t border-white/10 mt-auto">
+                    <p class="text-sm text-slate-400 mb-4 font-light">Interested in this vehicle? Contact our sales team for availability and financing options.</p>
+                    <button type="button" id="modal-contact-btn" class="w-full block text-center py-3.5 rounded-xl bg-blue-600 text-white font-medium hover:bg-blue-500 transition-colors shadow-[0_0_15px_rgba(37,99,235,0.4)]">
+                        Contact Sales
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "AutoDealer",
+      "name": "PN7 Automobile",
+      "telephone": ["+959403718599", "+959761112344"],
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "No.(413), 62nd Street, Between 35th & 36th Streets, MaharAungMyay Township",
+        "addressLocality": "Mandalay",
+        "addressCountry": "MM"
+      },
+      "openingHours": "Mo-Su 09:00-17:00"
+    }
+    </script>
+
+    <script>
+    (function () {
+        'use strict';
+
+        const cars = [
+            { id: 1, brand: 'Sinotruk', name: 'Sinotruk VGV U70 Pro', engine: '1.5T', model: '2025', seats: 7, hp: '156 HP', gear: '6-Speed Automatic', dimensions: '15 ft 10 in x 6 ft 2 in x 5 ft 7 in', groundClearance: '7.9 in', images: { front: 'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&q=80&w=800', back: 'https://images.unsplash.com/photo-1609521263047-f8f205293f24?auto=format&fit=crop&q=80&w=800', interior: 'https://images.unsplash.com/photo-1600705722908-bab1e61c0b4d?auto=format&fit=crop&q=80&w=800', left: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&q=80&w=800', right: 'https://images.unsplash.com/photo-1503376760361-b978a16590c1?auto=format&fit=crop&q=80&w=800' } },
+            { id: 2, brand: 'Sinotruk', name: 'Sinotruk VGV U75 Plus', engine: '2.0T', model: '2025', seats: 7, hp: '224 HP', gear: '8-Speed Automatic', dimensions: '15 ft 10 in x 6 ft 2 in x 5 ft 7 in', groundClearance: '7.9 in', images: { front: 'https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&q=80&w=800', back: 'https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?auto=format&fit=crop&q=80&w=800', interior: 'https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&q=80&w=800', left: 'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&q=80&w=800', right: 'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&q=80&w=800' } },
+            { id: 3, brand: 'Sinotruk', name: 'Sinotruk Bolden S7', engine: '2.0T', model: '2025', seats: 7, hp: '224 HP', gear: '8-Speed Automatic', dimensions: '16 ft 8 in x 6 ft 6 in x 6 ft 4 in', groundClearance: '8.3 in', images: { front: 'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&q=80&w=800', back: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&q=80&w=800', interior: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80&w=800', left: 'https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&q=80&w=800', right: 'https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&q=80&w=800' } },
+            { id: 4, brand: 'Jetour', name: 'Jetour X50', engine: '1.5T', model: '2025', seats: 5, hp: '156 HP', gear: '6-Speed DCT', dimensions: '14 ft 5 in x 6 ft 0 in x 5 ft 5 in', groundClearance: '7.1 in', images: { front: 'https://images.unsplash.com/photo-1542282088-fe8426682b8f?auto=format&fit=crop&q=80&w=800', back: 'https://images.unsplash.com/photo-1619682817481-e994891cd1f5?auto=format&fit=crop&q=80&w=800', interior: 'https://images.unsplash.com/photo-1486495330452-27756fdf0618?auto=format&fit=crop&q=80&w=800', left: 'https://images.unsplash.com/photo-1611016186353-9af58c69a533?auto=format&fit=crop&q=80&w=800', right: 'https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=format&fit=crop&q=80&w=800' } },
+            { id: 5, brand: 'Jetour', name: 'Jetour T1', engine: '1.5T', model: '2025', seats: 5, hp: '197 HP', gear: '7-Speed DCT', dimensions: '15 ft 5 in x 6 ft 5 in x 6 ft 1 in', groundClearance: '8.1 in', images: { front: 'https://images.unsplash.com/photo-1520031441872-265e4ff70366?auto=format&fit=crop&q=80&w=800', back: 'https://images.unsplash.com/photo-1550989460-0adf9ea622e2?auto=format&fit=crop&q=80&w=800', interior: 'https://images.unsplash.com/photo-1502489597346-bf1051566cb8?auto=format&fit=crop&q=80&w=800', left: 'https://images.unsplash.com/photo-1485291571150-772bcfc10da5?auto=format&fit=crop&q=80&w=800', right: 'https://images.unsplash.com/photo-1525609004556-c46c7d6cf02b?auto=format&fit=crop&q=80&w=800' } },
+            { id: 6, brand: 'Jetour', name: 'Jetour T2', engine: '2.0T', model: '2026', seats: 5, hp: '254 HP', gear: '7-Speed DCT', dimensions: '15 ft 8 in x 6 ft 7 in x 6 ft 2 in', groundClearance: '8.7 in', images: { front: 'https://images.unsplash.com/photo-1533106497176-45ae19e68ba2?auto=format&fit=crop&q=80&w=800', back: 'https://images.unsplash.com/photo-1616422285623-14fb795e59d6?auto=format&fit=crop&q=80&w=800', interior: 'https://images.unsplash.com/photo-1563720360172-67b8f3dce741?auto=format&fit=crop&q=80&w=800', left: 'https://images.unsplash.com/photo-1550355291-bbee04a92027?auto=format&fit=crop&q=80&w=800', right: 'https://images.unsplash.com/photo-1551830820-330a71b99659?auto=format&fit=crop&q=80&w=800' } },
+            { id: 7, brand: 'Jetour', name: 'Jetour Dashing', engine: '1.6T', model: '2025', seats: 5, hp: '197 HP', gear: '7-Speed DCT', dimensions: '15 ft 1 in x 6 ft 3 in x 5 ft 6 in', groundClearance: '6.3 in', images: { front: 'https://images.unsplash.com/photo-1614200187524-dc4b892acf16?auto=format&fit=crop&q=80&w=800', back: 'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&q=80&w=800', interior: 'https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&q=80&w=800', left: 'https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&q=80&w=800', right: 'https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&q=80&w=800' } },
+            { id: 8, brand: 'Beijing', name: 'Beijing X7', engine: '1.5T', model: '2025', seats: 5, hp: '188 HP', gear: '7-Speed DCT', dimensions: '15 ft 5 in x 6 ft 2 in x 5 ft 8 in', groundClearance: '7.9 in', images: { front: 'https://images.unsplash.com/photo-1606152421802-db97b9c7a11b?auto=format&fit=crop&q=80&w=800', back: 'https://images.unsplash.com/photo-1617469767053-d3b523a0b982?auto=format&fit=crop&q=80&w=800', interior: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&q=80&w=800', left: 'https://images.unsplash.com/photo-1617531653332-bd46c24f2068?auto=format&fit=crop&q=80&w=800', right: 'https://images.unsplash.com/photo-1626668893632-6f3a4466d22f?auto=format&fit=crop&q=80&w=800' } },
+            { id: 9, brand: 'Forthing', name: 'Forthing M4 U-Tour', engine: '1.5T', model: '2025', seats: 7, hp: '197 HP', gear: '7-Speed DCT', dimensions: '15 ft 11 in x 6 ft 3 in x 5 ft 8 in', groundClearance: '6.7 in', images: { front: 'https://images.unsplash.com/photo-1621007947382-bb3c3994e3fd?auto=format&fit=crop&q=80&w=800', back: 'https://images.unsplash.com/photo-1619767886558-efdc259cde1a?auto=format&fit=crop&q=80&w=800', interior: 'https://images.unsplash.com/photo-1605810731668-c11be4737bc6?auto=format&fit=crop&q=80&w=800', left: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&q=80&w=800', right: 'https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&q=80&w=800' } }
+        ];
+
+        const carGrid = document.getElementById('car-grid');
+        const filterButtons = Array.from(document.querySelectorAll('.filter-btn'));
+        const searchInput = document.getElementById('search-input');
+        const resultsStatus = document.getElementById('results-status');
+        const modal = document.getElementById('car-modal');
+        const modalContent = document.getElementById('modal-content');
+        const modalTitle = document.getElementById('modal-car-title');
+        const modalSpecs = document.getElementById('modal-specs-list');
+        const modalViewLabel = document.getElementById('modal-view-label');
+        const modalMainImage = document.getElementById('modal-main-image');
+        const modalThumbnails = document.getElementById('modal-thumbnails');
+        const modalContactBtn = document.getElementById('modal-contact-btn');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const refreshBtn = document.getElementById('refresh-btn');
+        const dataStatus = document.getElementById('data-status');
+        const modalCloseBtn = document.getElementById('modal-close-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        let currentFilter = 'All';
+        let currentSearch = '';
+        let selectedCar = null;
+        let lastFocusedElement = null;
+        let previousBodyOverflow = '';
+
+        function setActiveFilter(button) {
+            filterButtons.forEach((btn) => {
+                const active = btn === button;
+                btn.classList.toggle('is-active', active);
+                btn.classList.toggle('bg-blue-600', active);
+                btn.classList.toggle('border-blue-500', active);
+                btn.classList.toggle('text-white', active);
+                btn.classList.toggle('glass-card', !active);
+                btn.classList.toggle('border-white/10', !active);
+                btn.classList.toggle('text-slate-300', !active);
+                btn.setAttribute('aria-pressed', String(active));
+            });
+        }
+
+        function renderCars() {
+            const query = currentSearch.trim().toLowerCase();
+            const filtered = cars.filter((car) => {
+                const brandMatch = currentFilter === 'All' || car.brand === currentFilter;
+                const textMatch = car.name.toLowerCase().includes(query);
+                return brandMatch && textMatch;
+            });
+
+            if (!filtered.length) {
+                carGrid.innerHTML = '<p class="col-span-full text-center text-slate-400 py-10">No vehicles found matching your search.</p>';
+                resultsStatus.textContent = 'No vehicles found';
+                dataStatus.textContent = '0 vehicles';
+                return;
+            }
+
+            carGrid.innerHTML = filtered.map((car) => `
+                <article class="glass-card rounded-3xl overflow-hidden glass-card--interactive">
+                    <button type="button" class="relative block w-full text-left group" data-car-id="${car.id}" aria-label="View details for ${car.name}">
+                        <div class="relative overflow-hidden h-56">
+                            <img src="${car.images.front}" alt="${car.name} front view" loading="lazy" decoding="async" width="800" height="600" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent"></div>
+                        </div>
+                        <div class="p-5">
+                            <div class="flex items-center justify-between gap-2 mb-4">
+                                <span class="text-xs font-semibold uppercase tracking-[0.2em] text-blue-300">${car.brand}</span>
+                                <span class="text-xs text-slate-400">${car.model}</span>
+                            </div>
+                            <h3 class="text-xl font-semibold text-white mb-4">${car.name}</h3>
+                            <div class="grid grid-cols-2 gap-2 text-xs text-slate-300">
+                                <span class="flex items-center gap-1.5 bg-white/5 rounded-lg px-2 py-2"><span class="material-symbols-outlined text-blue-400 text-base" aria-hidden="true">speed</span> ${car.engine}</span>
+                                <span class="flex items-center gap-1.5 bg-white/5 rounded-lg px-2 py-2"><span class="material-symbols-outlined text-blue-400 text-base" aria-hidden="true">calendar_month</span> ${car.model}</span>
+                                <span class="flex items-center gap-1.5 bg-white/5 rounded-lg px-2 py-2"><span class="material-symbols-outlined text-blue-400 text-base" aria-hidden="true">airline_seat_recline_normal</span> ${car.seats} seats</span>
+                                <span class="flex items-center gap-1.5 bg-white/5 rounded-lg px-2 py-2"><span class="material-symbols-outlined text-blue-400 text-base" aria-hidden="true">bolt</span> ${car.hp}</span>
+                            </div>
+                            <div class="mt-5 flex gap-2">
+                                <span class="flex-1 rounded-xl border border-white/15 px-3 py-2 text-center text-sm font-medium text-white">Details</span>
+                                <span class="flex-1 rounded-xl bg-blue-600 px-3 py-2 text-center text-sm font-medium text-white">View Vehicle</span>
+                            </div>
+                        </div>
+                    </button>
+                </article>
+            `).join('');
+
+            const countLabel = `${filtered.length} vehicle${filtered.length > 1 ? 's' : ''}`;
+            resultsStatus.textContent = `${countLabel} shown`;
+            dataStatus.textContent = countLabel;
+        }
+
+        function updateModal(car) {
+            modalTitle.textContent = car.name;
+            modalMainImage.src = car.images.front;
+            modalMainImage.alt = `${car.name} front view`;
+            modalViewLabel.textContent = 'Front View';
+
+            modalSpecs.innerHTML = `
+                <li class="flex items-center justify-between gap-3 border-b border-white/10 pb-3">
+                    <span class="flex items-center gap-2 text-slate-400"><span class="material-symbols-outlined text-[18px] text-blue-400" aria-hidden="true">speed</span> Engine</span>
+                    <strong class="text-white">${car.engine}</strong>
+                </li>
+                <li class="flex items-center justify-between gap-3 border-b border-white/10 pb-3">
+                    <span class="flex items-center gap-2 text-slate-400"><span class="material-symbols-outlined text-[18px] text-blue-400" aria-hidden="true">calendar_month</span> Model</span>
+                    <strong class="text-white">${car.model}</strong>
+                </li>
+                <li class="flex items-center justify-between gap-3 border-b border-white/10 pb-3">
+                    <span class="flex items-center gap-2 text-slate-400"><span class="material-symbols-outlined text-[18px] text-blue-400" aria-hidden="true">airline_seat_recline_normal</span> Seats</span>
+                    <strong class="text-white">${car.seats}</strong>
+                </li>
+                <li class="flex items-center justify-between gap-3 border-b border-white/10 pb-3">
+                    <span class="flex items-center gap-2 text-slate-400"><span class="material-symbols-outlined text-[18px] text-blue-400" aria-hidden="true">bolt</span> Horsepower</span>
+                    <strong class="text-white">${car.hp}</strong>
+                </li>
+                <li class="flex items-center justify-between gap-3 border-b border-white/10 pb-3">
+                    <span class="flex items-center gap-2 text-slate-400"><span class="material-symbols-outlined text-[18px] text-blue-400" aria-hidden="true">account_tree</span> Transmission</span>
+                    <strong class="text-white">${car.gear}</strong>
+                </li>
+                <li class="flex items-center justify-between gap-3 border-b border-white/10 pb-3">
+                    <span class="flex items-center gap-2 text-slate-400"><span class="material-symbols-outlined text-[18px] text-blue-400" aria-hidden="true">straighten</span> Dimensions</span>
+                    <strong class="text-white">${car.dimensions}</strong>
+                </li>
+                <li class="flex items-center justify-between gap-3 pb-0">
+                    <span class="flex items-center gap-2 text-slate-400"><span class="material-symbols-outlined text-[18px] text-blue-400" aria-hidden="true">height</span> Ground clearance</span>
+                    <strong class="text-white">${car.groundClearance}</strong>
+                </li>
+            `;
+
+            const viewNames = [
+                { key: 'front', label: 'Front View' },
+                { key: 'back', label: 'Back View' },
+                { key: 'interior', label: 'Interior' },
+                { key: 'left', label: 'Left Side' },
+                { key: 'right', label: 'Right Side' }
+            ];
+
+            modalThumbnails.innerHTML = viewNames.map((view, index) => `
+                <button type="button" class="thumb ${index === 0 ? 'border-blue-500' : 'border-transparent'} border-2 rounded-lg overflow-hidden flex-shrink-0 w-24 h-16 ${index === 0 ? '' : 'opacity-70'}" data-view="${view.key}" aria-label="${car.name} ${view.label}" aria-pressed="${index === 0}">
+                    <img src="${car.images[view.key]}" alt="${car.name} ${view.label}" class="w-full h-full object-cover" loading="lazy" decoding="async" />
+                </button>
+            `).join('');
+        }
+
+        function openModal(carId) {
+            selectedCar = cars.find((car) => car.id === carId);
+            if (!selectedCar) return;
+
+            lastFocusedElement = document.activeElement;
+            updateModal(selectedCar);
+            modal.classList.remove('hidden');
+            modal.classList.add('flex', 'opacity-100');
+            modalContent.classList.remove('scale-95');
+            modalContent.classList.add('scale-100');
+            previousBodyOverflow = document.body.style.overflow;
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => modalCloseBtn.focus(), 50);
+        }
+
+        function closeModal() {
+            modal.classList.add('hidden', 'opacity-0');
+            modal.classList.remove('flex', 'opacity-100');
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-95');
+            document.body.style.overflow = previousBodyOverflow;
+            selectedCar = null;
+            if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+                lastFocusedElement.focus();
+            }
+        }
+
+        filterButtons.forEach((button) => {
+            button.addEventListener('click', () => {
+                currentFilter = button.dataset.filter;
+                setActiveFilter(button);
+                renderCars();
+            });
+        });
+
+        searchInput.addEventListener('input', (event) => {
+            currentSearch = event.target.value;
+            renderCars();
+        });
+
+        refreshBtn.addEventListener('click', () => {
+            currentFilter = 'All';
+            currentSearch = '';
+            searchInput.value = '';
+            setActiveFilter(filterButtons[0]);
+            renderCars();
+            dataStatus.textContent = `${cars.length} vehicles`;
+        });
+
+        carGrid.addEventListener('click', (event) => {
+            const button = event.target.closest('[data-car-id]');
+            if (!button) return;
+            const carId = Number(button.dataset.carId);
+            openModal(carId);
+        });
+
+        modalThumbnails.addEventListener('click', (event) => {
+            const thumb = event.target.closest('[data-view]');
+            if (!thumb || !selectedCar) return;
+            const viewKey = thumb.dataset.view;
+
+            const viewLabelMap = {
+                front: 'Front View',
+                back: 'Back View',
+                interior: 'Interior',
+                left: 'Left Side',
+                right: 'Right Side'
+            };
+
+            modalMainImage.src = selectedCar.images[viewKey];
+            modalMainImage.alt = `${selectedCar.name} ${viewLabelMap[viewKey]}`;
+            modalViewLabel.textContent = viewLabelMap[viewKey];
+
+            Array.from(modalThumbnails.children).forEach((item) => {
+                const active = item === thumb;
+                item.classList.toggle('border-blue-500', active);
+                item.classList.toggle('opacity-70', !active);
+                item.setAttribute('aria-pressed', String(active));
+                item.classList.toggle('border-transparent', !active);
+            });
+        });
+
+        document.querySelectorAll('[data-close-modal]').forEach((closeTrigger) => {
+            closeTrigger.addEventListener('click', closeModal);
+        });
+
+        window.addEventListener('keydown', (event) => {
+            if (!modal.classList.contains('hidden')) {
+                if (event.key === 'Escape') {
+                    closeModal();
+                    return;
+                }
+                if (event.key === 'Tab') {
+                const focusable = Array.from(modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'));
+                if (!focusable.length) return;
+                const first = focusable[0];
+                const last = focusable[focusable.length - 1];
+                if (event.shiftKey && document.activeElement === first) {
+                    event.preventDefault();
+                    last.focus();
+                } else if (!event.shiftKey && document.activeElement === last) {
+                    event.preventDefault();
+                    first.focus();
+                }
+            }
+                return;
+            }
+
+            if (event.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
+                closeMobileMenu();
+                mobileMenuBtn.focus();
+            }
+        });
+
+        modalContactBtn.addEventListener('click', () => {
+            closeModal();
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        document.getElementById('logo-btn').addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        function closeMobileMenu() {
+            mobileMenu.classList.add('hidden');
+            mobileMenuBtn.setAttribute('aria-expanded', 'false');
+            mobileMenuBtn.setAttribute('aria-label', 'Open navigation menu');
+            const icon = mobileMenuBtn.querySelector('.material-symbols-outlined');
+            if (icon) icon.textContent = 'menu';
+        }
+
+        mobileMenuBtn.addEventListener('click', () => {
+            const isHidden = mobileMenu.classList.contains('hidden');
+            mobileMenu.classList.toggle('hidden', !isHidden);
+            mobileMenuBtn.setAttribute('aria-expanded', String(isHidden));
+            mobileMenuBtn.setAttribute('aria-label', isHidden ? 'Close navigation menu' : 'Open navigation menu');
+            const icon = mobileMenuBtn.querySelector('.material-symbols-outlined');
+            if (icon) icon.textContent = isHidden ? 'close' : 'menu';
+        });
+
+        mobileMenu.querySelectorAll('a').forEach((link) => {
+            link.addEventListener('click', () => {
+                closeMobileMenu();
+            });
+        });
+
+        renderCars();
+        setActiveFilter(filterButtons[0]);
+    })();
+    </script>
+</body>
+</html>
