@@ -1,34 +1,55 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth scroll-pt-24">
+<html lang="en" class="scroll-pt-16">
+<!--
+  ============================================================
+  PN7 Automobile Showroom — FIXED VERSION
+  ============================================================
+  ပြင်ဆင်ချက်များ:
+  1.  Modal -> #contact scroll bug ပြင်ပြီး (overflow ကို ချက်ချင်း ပြန်ဖွင့်)
+  2.  Icon အားလုံးမှာ aria-hidden="true" ထည့်ပြီး
+  3.  ကားကတ်များကို keyboard ဖြင့် သုံးနိုင်အောင် လုပ်ပြီး
+  4.  Modal တွင် role="dialog", aria-modal, focus trap, focus restore ထည့်ပြီး
+  5.  lang="en" ပြောင်းပြီး မြန်မာစာသားများကို lang="my" ဖြင့် tag လုပ်ပြီး
+  6.  သေနေသော CSS (.modal-enter*, .custom-scrollbar, glass colors) ဖျက်ပြီး
+  7.  ပုံများတွင် loading="lazy" + width/height ထည့်ပြီး
+  8.  Search တွင် debounce ထည့်ပြီး
+  9.  aria-live, aria-pressed, aria-expanded, aria-label ထည့်ပြီး
+  10. prefers-reduced-motion ပံ့ပိုးပြီး
+  ============================================================
+-->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PN7 Automobile | Premium Car Showroom in Mandalay</title>
-    <meta name="description" content="PN7 Automobile — Mandalay's premium car showroom. Sinotruk, Jetour, Beijing and Forthing vehicles with bank installments and trade-in services.">
+    <meta name="description" content="PN7 Automobile — Mandalay's premium car showroom. Explore Sinotruk, Jetour, Beijing and Forthing vehicles with bank installments and trade-in services.">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="PN7 Automobile | Premium Car Showroom">
-    <meta property="og:description" content="Explore our exclusive collection of premium vehicles.">
+    <meta property="og:description" content="Explore our exclusive collection of premium vehicles with easy installments and seamless trade-ins.">
     <meta property="og:locale" content="en_MM">
     <meta name="twitter:card" content="summary_large_image">
 
-    <!-- Favicon -->
+    <!-- Favicon (inline SVG) -->
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%9A%97%3C/text%3E%3C/svg%3E">
 
-    <!-- Fonts -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Myanmar:wght@400;500;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Google Material Symbols -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0" />
 
-    <!-- Tailwind -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { sans: ['Poppins', 'Noto Sans Myanmar', 'sans-serif'] }
+                    fontFamily: {
+                        sans: ['Poppins', 'Noto Sans Myanmar', 'sans-serif'],
+                    }
                 }
             }
         }
@@ -38,55 +59,72 @@
         body {
             background-color: #0f172a;
             color: #f8fafc;
-            background-image: radial-gradient(circle at 10% 20%, rgb(15,23,42) 0%, rgb(25,33,50) 40%, rgb(15,23,42) 100%);
+            background-image: radial-gradient(circle at 10% 20%, rgb(15, 23, 42) 0%, rgb(25, 33, 50) 40%, rgb(15, 23, 42) 100%);
             background-attachment: fixed;
             -webkit-font-smoothing: antialiased;
         }
 
+        /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #0f172a; }
         ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: #475569; }
 
+        /* ---------- Glassmorphism ---------- */
         .glass-card {
-            background: rgba(255,255,255,0.03);
+            background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255,255,255,0.08);
-            box-shadow: 0 4px 30px rgba(0,0,0,0.2);
-            transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
+
+        /* Hover lift ကို interactive ကတ်များတွင်သာ ကျင့်သုံး */
         .glass-card--interactive:hover,
         .glass-card--interactive:focus-within {
             transform: translateY(-5px);
-            border-color: rgba(255,255,255,0.2);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
         }
+
         .glass-nav {
-            background: rgba(15,23,42,0.7);
+            background: rgba(15, 23, 42, 0.7);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .filter-btn { transition: background-color .2s ease, border-color .2s ease, color .2s ease, box-shadow .2s ease; }
+        /* ---------- Filter buttons ---------- */
+        .filter-btn {
+            transition: background-color .2s ease, border-color .2s ease, color .2s ease, box-shadow .2s ease;
+        }
         .filter-btn.is-active {
-            border-color: #3b82f6; background-color: #2563eb; color: #fff;
-            box-shadow: 0 0 15px rgba(37,99,235,0.3);
+            border-color: #3b82f6;
+            background-color: #2563eb;
+            color: #ffffff;
+            box-shadow: 0 0 15px rgba(37, 99, 235, 0.3);
         }
 
-        #modal-main-image { transition: opacity 150ms ease, transform 500ms ease; }
+        /* ---------- Modal image fade ---------- */
+        #modal-main-image {
+            transition: opacity 150ms ease, transform 500ms ease;
+        }
         #modal-main-image.is-fading { opacity: 0.35; }
 
-        :focus-visible { outline: 2px solid #60a5fa; outline-offset: 3px; border-radius: 6px; }
+        /* ---------- Focus visibility ---------- */
+        :focus-visible {
+            outline: 2px solid #60a5fa;
+            outline-offset: 3px;
+            border-radius: 6px;
+        }
 
-        @keyframes spin { to { transform: rotate(360deg); } }
-        .animate-spin { animation: spin 1s linear infinite; }
-
+        /* ---------- Reduced motion ---------- */
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after {
-                animation-duration: .01ms !important;
-                transition-duration: .01ms !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
                 scroll-behavior: auto !important;
             }
             .glass-card--interactive:hover { transform: none; }
@@ -95,20 +133,22 @@
 </head>
 <body class="min-h-screen relative overflow-x-hidden">
 
+    <!-- Skip link -->
     <a href="#showroom" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[200] focus:px-4 focus:py-2 focus:bg-blue-600 focus:text-white focus:rounded-lg">
         Skip to showroom
     </a>
 
-    <!-- ============ HEADER ============ -->
     <header class="fixed top-0 w-full z-50 glass-nav">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
                 <button type="button" id="logo-btn" class="flex-shrink-0 flex items-center gap-2" aria-label="PN7 Automobile — back to top">
                     <span class="material-symbols-outlined text-blue-400 text-3xl" aria-hidden="true">directions_car</span>
                     <span class="font-bold text-2xl tracking-wider text-white">PN7</span>
                     <span class="font-light text-sm tracking-widest text-slate-400 mt-1 uppercase hidden sm:block">Automobile</span>
                 </button>
 
+                <!-- Desktop Menu -->
                 <nav class="hidden md:flex space-x-8" aria-label="Main navigation">
                     <a href="#home" class="text-slate-300 hover:text-white transition-colors text-sm font-medium">Home</a>
                     <a href="#showroom" class="text-slate-300 hover:text-white transition-colors text-sm font-medium">Showroom</a>
@@ -116,16 +156,20 @@
                     <a href="#contact" class="text-slate-300 hover:text-white transition-colors text-sm font-medium">Contact</a>
                 </nav>
 
+                <!-- Mobile Menu Button -->
                 <div class="md:hidden flex items-center">
                     <button type="button" id="mobile-menu-btn"
                             class="text-slate-300 hover:text-white focus:outline-none"
-                            aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+                            aria-label="Open navigation menu"
+                            aria-expanded="false"
+                            aria-controls="mobile-menu">
                         <span class="material-symbols-outlined text-3xl" aria-hidden="true">menu</span>
                     </button>
                 </div>
             </div>
         </div>
 
+        <!-- Mobile Menu Panel -->
         <div id="mobile-menu" class="hidden md:hidden glass-card mx-4 mb-4 rounded-xl">
             <nav class="px-4 pt-2 pb-4 space-y-1" aria-label="Mobile navigation">
                 <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-white/5">Home</a>
@@ -137,7 +181,6 @@
     </header>
 
     <main>
-        <!-- ============ HERO ============ -->
         <section id="home" class="pt-32 pb-16 md:pt-40 md:pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex flex-col items-center text-center">
             <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-300 text-xs font-medium uppercase tracking-widest mb-6">
                 <span class="material-symbols-outlined text-sm" aria-hidden="true">stars</span>
@@ -161,7 +204,6 @@
             </div>
         </section>
 
-        <!-- ============ SHOWROOM ============ -->
         <section id="showroom" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
             <div class="flex flex-col md:flex-row justify-between items-end mb-6 gap-4">
                 <div>
@@ -169,21 +211,17 @@
                     <p class="text-slate-400 font-light">Explore our lineup of cutting-edge SUVs and vehicles.</p>
                 </div>
 
-                <div class="glass-card flex items-center px-4 py-2 rounded-full w-full md:w-auto gap-2">
+                <!-- Search Input -->
+                <div class="glass-card flex items-center px-4 py-2 rounded-full w-full md:w-auto">
                     <label for="search-input" class="sr-only">Search car models</label>
-                    <span class="material-symbols-outlined text-slate-400" aria-hidden="true">search</span>
-                    <input type="search" id="search-input" placeholder="Search models..." autocomplete="off"
-                           class="bg-transparent border-none outline-none text-sm text-white w-full md:w-40 placeholder-slate-500">
-
-                    <!-- Refresh button + status -->
-                    <span id="data-status" class="text-xs font-medium text-slate-400 hidden sm:inline"></span>
-                    <button type="button" id="refresh-btn" aria-label="Refresh vehicle data"
-                            class="ml-1 w-8 h-8 rounded-full flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition-colors">
-                        <span class="material-symbols-outlined text-[20px]" aria-hidden="true">refresh</span>
-                    </button>
+                    <span class="material-symbols-outlined text-slate-400 mr-2" aria-hidden="true">search</span>
+                    <input type="search" id="search-input" placeholder="Search models..."
+                           autocomplete="off"
+                           class="bg-transparent border-none outline-none text-sm text-white w-full md:w-48 placeholder-slate-500">
                 </div>
             </div>
 
+            <!-- Filter Chips -->
             <div class="flex flex-wrap gap-2 mb-6" id="filter-container" role="group" aria-label="Filter by brand">
                 <button type="button" class="filter-btn is-active px-5 py-2 rounded-full border border-blue-500 bg-blue-600 text-white text-sm font-medium" data-filter="All" aria-pressed="true">All</button>
                 <button type="button" class="filter-btn px-5 py-2 rounded-full border border-white/10 glass-card text-slate-300 text-sm font-medium hover:bg-white/10" data-filter="Sinotruk" aria-pressed="false">Sinotruk</button>
@@ -192,21 +230,20 @@
                 <button type="button" class="filter-btn px-5 py-2 rounded-full border border-white/10 glass-card text-slate-300 text-sm font-medium hover:bg-white/10" data-filter="Forthing" aria-pressed="false">Forthing</button>
             </div>
 
+            <!-- Screen-reader status -->
             <p id="results-status" class="sr-only" aria-live="polite"></p>
 
-            <div id="car-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Loading skeleton (JS က အစားထိုးမယ်) -->
-                <p class="col-span-full text-center text-slate-400 py-10">Loading vehicles…</p>
-            </div>
+            <!-- Car Grid -->
+            <div id="car-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
         </section>
 
-        <!-- ============ SERVICES ============ -->
         <section id="services" class="py-20 relative before:absolute before:inset-0 before:bg-slate-900/50 before:-z-10">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <h2 class="text-3xl md:text-4xl font-bold mb-4">Our Services</h2>
                 <p class="text-slate-400 mb-16 font-light max-w-2xl mx-auto">We provide exceptional services to make your car buying experience smooth and hassle-free.</p>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    <!-- Trade-in Service -->
                     <div class="glass-card p-8 rounded-2xl flex flex-col items-center text-center group">
                         <div class="w-16 h-16 rounded-full bg-blue-500/20 flex items-center justify-center mb-6 text-blue-400 group-hover:scale-110 transition-transform">
                             <span class="material-symbols-outlined text-3xl" aria-hidden="true">sync_alt</span>
@@ -217,6 +254,7 @@
                         </p>
                     </div>
 
+                    <!-- Bank Installment -->
                     <div class="glass-card p-8 rounded-2xl flex flex-col items-center text-center group">
                         <div class="w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center mb-6 text-green-400 group-hover:scale-110 transition-transform">
                             <span class="material-symbols-outlined text-3xl" aria-hidden="true">account_balance</span>
@@ -234,12 +272,12 @@
         </section>
     </main>
 
-    <!-- ============ FOOTER / CONTACT ============ -->
     <footer id="contact" class="pt-20 pb-10 border-t border-white/10 relative overflow-hidden">
         <div class="absolute bottom-0 right-0 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl -z-10 translate-x-1/3 translate-y-1/3" aria-hidden="true"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+                <!-- Brand Info -->
                 <div class="space-y-4">
                     <div class="flex items-center gap-2">
                         <span class="material-symbols-outlined text-blue-400 text-3xl" aria-hidden="true">directions_car</span>
@@ -250,6 +288,7 @@
                     </p>
                 </div>
 
+                <!-- Contact Details -->
                 <div class="space-y-6">
                     <h2 class="text-lg font-semibold tracking-wide">Contact Us</h2>
                     <div class="space-y-4">
@@ -264,13 +303,14 @@
                         <div class="flex items-center gap-3 text-slate-300">
                             <span class="material-symbols-outlined text-slate-400" aria-hidden="true">call</span>
                             <div class="flex flex-col">
-                                <a id="footer-phone1" href="#" class="text-sm font-light hover:text-blue-400 transition-colors">09403718599</a>
-                                <a id="footer-phone2" href="#" class="text-sm font-light hover:text-blue-400 transition-colors">09761112344</a>
+                                <a href="tel:09403718599" class="text-sm font-light hover:text-blue-400 transition-colors">09403718599</a>
+                                <a href="tel:09761112344" class="text-sm font-light hover:text-blue-400 transition-colors">09761112344</a>
                             </div>
                         </div>
                     </div>
                 </div>
 
+                <!-- Operating Hours -->
                 <div class="space-y-6">
                     <h2 class="text-lg font-semibold tracking-wide">Opening Hours</h2>
                     <div class="glass-card p-5 rounded-xl inline-block">
@@ -278,39 +318,569 @@
                             <span class="material-symbols-outlined text-blue-400" aria-hidden="true">schedule</span>
                             <span class="font-medium">Open Daily</span>
                         </div>
-                        <p id="footer-hours" class="text-2xl font-light text-white ml-9">09:00 AM – 05:00 PM</p>
+                        <p class="text-2xl font-light text-white ml-9">09:00 AM – 05:00 PM</p>
                     </div>
                 </div>
             </div>
 
-            <!-- ===== 4 Contact Buttons ===== -->
-            <div class="mb-16">
-                <h2 class="text-lg font-semibold tracking-wide text-center mb-6">Get in Touch</h2>
-                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-3xl mx-auto">
-
-                    <a id="footer-call" href="#"
-                       class="glass-card rounded-2xl p-4 flex flex-col items-center gap-2 hover:bg-white/5 transition-colors group">
-                        <div class="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400 group-hover:scale-110 transition-transform">
-                            <span class="material-symbols-outlined text-2xl" aria-hidden="true">call</span>
-                        </div>
-                        <span class="text-sm font-medium text-white">Call</span>
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-slate-500 text-sm font-light">
+                    &copy; <span id="year"></span> PN7 Automobile. All rights reserved.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#" class="w-10 h-10 rounded-full glass-card flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition-all" aria-label="Website">
+                        <span class="material-symbols-outlined text-[20px]" aria-hidden="true">language</span>
                     </a>
-
-                    <a id="footer-viber" href="#" target="_blank" rel="noopener"
-                       class="glass-card rounded-2xl p-4 flex flex-col items-center gap-2 hover:bg-white/5 transition-colors group">
-                        <div class="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 group-hover:scale-110 transition-transform">
-                            <span class="material-symbols-outlined text-2xl" aria-hidden="true">phone_in_talk</span>
-                        </div>
-                        <span class="text-sm font-medium text-white">Viber</span>
+                    <a href="#" class="w-10 h-10 rounded-full glass-card flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition-all" aria-label="Share">
+                        <span class="material-symbols-outlined text-[20px]" aria-hidden="true">share</span>
                     </a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-                    <a id="footer-whatsapp" href="#" target="_blank" rel="noopener"
-                       class="glass-card rounded-2xl p-4 flex flex-col items-center gap-2 hover:bg-white/5 transition-colors group">
-                        <div class="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center text-green-400 group-hover:scale-110 transition-transform">
-                            <span class="material-symbols-outlined text-2xl" aria-hidden="true">chat_bubble</span>
+    <!-- ================= MODAL ================= -->
+    <div id="car-modal"
+         class="fixed inset-0 z-[100] hidden items-center justify-center p-4 sm:p-6 opacity-0 transition-opacity duration-300"
+         role="dialog"
+         aria-modal="true"
+         aria-labelledby="modal-car-title">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm" data-close-modal></div>
+
+        <div id="modal-content" class="relative w-full max-w-5xl glass-card bg-slate-900/90 border border-white/10 rounded-2xl overflow-hidden shadow-2xl flex flex-col md:flex-row transform scale-95 transition-transform duration-300 max-h-[90vh]">
+
+            <button type="button" data-close-modal
+                    class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-black/80 transition-colors backdrop-blur-md"
+                    aria-label="Close dialog">
+                <span class="material-symbols-outlined" aria-hidden="true">close</span>
+            </button>
+
+            <!-- Image Gallery -->
+            <div class="w-full md:w-3/5 bg-black/40 p-4 sm:p-6 flex flex-col flex-shrink-0">
+                <div class="relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-black mb-4 group">
+                    <img id="modal-main-image" src="" alt="" width="800" height="600" class="w-full h-full object-cover group-hover:scale-105">
+
+                    <div class="absolute top-4 left-4 glass-card px-3 py-1 rounded-full text-xs font-medium text-white shadow-lg backdrop-blur-md">
+                        <span id="modal-view-label">Front View</span>
+                    </div>
+                </div>
+
+                <div class="flex gap-3 overflow-x-auto py-2" id="modal-thumbnails" role="group" aria-label="Vehicle photo angles"></div>
+            </div>
+
+            <!-- Details -->
+            <div class="w-full md:w-2/5 p-6 sm:p-8 flex flex-col overflow-y-auto">
+                <div class="mb-6">
+                    <h2 id="modal-car-title" class="text-3xl font-bold text-white mb-2 leading-tight"></h2>
+                    <p class="text-blue-400 text-sm font-medium tracking-wide uppercase">Premium Collection</p>
+                </div>
+
+                <div class="space-y-6 mb-8 flex-grow">
+                    <div class="glass-card rounded-xl p-5">
+                        <ul class="space-y-4 text-sm" id="modal-specs-list"></ul>
+                    </div>
+
+                    <div class="space-y-3">
+                        <h3 class="text-sm font-medium text-slate-300 uppercase tracking-wider">Features &amp; Highlights</h3>
+                        <ul class="space-y-2 text-slate-400 font-light text-sm">
+                            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-[16px] text-blue-400" aria-hidden="true">check_circle</span> Modern aesthetic design</li>
+                            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-[16px] text-blue-400" aria-hidden="true">check_circle</span> Advanced safety systems</li>
+                            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-[16px] text-blue-400" aria-hidden="true">check_circle</span> Spacious premium interior</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="pt-6 border-t border-white/10 mt-auto">
+                    <p class="text-sm text-slate-400 mb-4 font-light">Interested in this vehicle? Contact our sales team for availability and financing options.</p>
+                    <button type="button" id="modal-contact-btn"
+                            class="w-full block text-center py-3.5 rounded-xl bg-blue-600 text-white font-medium hover:bg-blue-500 transition-colors shadow-[0_0_15px_rgba(37,99,235,0.4)]">
+                        Contact Sales
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= JSON-LD ================= -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "AutoDealer",
+      "name": "PN7 Automobile",
+      "telephone": ["+959403718599", "+959761112344"],
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "No.(413), 62nd Street, Between 35th & 36th Streets, MaharAungMyay Township",
+        "addressLocality": "Mandalay",
+        "addressCountry": "MM"
+      },
+      "openingHours": "Mo-Su 09:00-17:00"
+    }
+    </script>
+
+    <script>
+    (function () {
+        'use strict';
+
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const scrollBehavior = reduceMotion ? 'auto' : 'smooth';
+
+        /* ---------------- Year ---------------- */
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        /* ---------------- Logo → top ---------------- */
+        document.getElementById('logo-btn').addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: scrollBehavior });
+        });
+
+        /* ---------------- Mobile menu ---------------- */
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu    = document.getElementById('mobile-menu');
+
+        function setMobileMenu(open) {
+            mobileMenu.classList.toggle('hidden', !open);
+            mobileMenuBtn.setAttribute('aria-expanded', String(open));
+            mobileMenuBtn.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+            const icon = mobileMenuBtn.querySelector('.material-symbols-outlined');
+            if (icon) icon.textContent = open ? 'close' : 'menu';
+        }
+
+        mobileMenuBtn.addEventListener('click', () => {
+            setMobileMenu(mobileMenu.classList.contains('hidden'));
+        });
+
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => setMobileMenu(false));
+        });
+
+        /* ---------------- Car data ---------------- */
+        const cars = [
+            {
+                id: 1, brand: "Sinotruk", name: "Sinotruk VGV U70 Pro",
+                engine: "1.5T", model: "2025", seats: 7, hp: "156 HP",
+                gear: "6-Speed Automatic",
+                dimensions: "15 ft 10 in x 6 ft 2 in x 5 ft 7 in",
+                groundClearance: "7.9 in",
+                images: {
+                    front:    "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&q=80&w=800",
+                    back:     "https://images.unsplash.com/photo-1609521263047-f8f205293f24?auto=format&fit=crop&q=80&w=800",
+                    interior: "https://images.unsplash.com/photo-1600705722908-bab1e61c0b4d?auto=format&fit=crop&q=80&w=800",
+                    left:     "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&q=80&w=800",
+                    right:    "https://images.unsplash.com/photo-1503376760361-b978a16590c1?auto=format&fit=crop&q=80&w=800"
+                }
+            },
+            {
+                id: 2, brand: "Sinotruk", name: "Sinotruk VGV U75 Plus",
+                engine: "2.0T", model: "2025", seats: 7, hp: "224 HP",
+                gear: "8-Speed Automatic",
+                dimensions: "15 ft 10 in x 6 ft 2 in x 5 ft 7 in",
+                groundClearance: "7.9 in",
+                images: {
+                    front:    "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&q=80&w=800",
+                    back:     "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?auto=format&fit=crop&q=80&w=800",
+                    interior: "https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&q=80&w=800",
+                    left:     "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&q=80&w=800",
+                    right:    "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&q=80&w=800"
+                }
+            },
+            {
+                id: 3, brand: "Sinotruk", name: "Sinotruk Bolden S7",
+                engine: "2.0T", model: "2025", seats: 7, hp: "224 HP",
+                gear: "8-Speed Automatic",
+                dimensions: "16 ft 8 in x 6 ft 6 in x 6 ft 4 in",
+                groundClearance: "8.3 in",
+                images: {
+                    front:    "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&q=80&w=800",
+                    back:     "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&q=80&w=800",
+                    interior: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80&w=800",
+                    left:     "https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&q=80&w=800",
+                    right:    "https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&q=80&w=800"
+                }
+            },
+            {
+                id: 4, brand: "Jetour", name: "Jetour X50",
+                engine: "1.5T", model: "2025", seats: 5, hp: "156 HP",
+                gear: "6-Speed DCT",
+                dimensions: "14 ft 5 in x 6 ft 0 in x 5 ft 5 in",
+                groundClearance: "7.1 in",
+                images: {
+                    front:    "https://images.unsplash.com/photo-1542282088-fe8426682b8f?auto=format&fit=crop&q=80&w=800",
+                    back:     "https://images.unsplash.com/photo-1619682817481-e994891cd1f5?auto=format&fit=crop&q=80&w=800",
+                    interior: "https://images.unsplash.com/photo-1486495330452-27756fdf0618?auto=format&fit=crop&q=80&w=800",
+                    left:     "https://images.unsplash.com/photo-1611016186353-9af58c69a533?auto=format&fit=crop&q=80&w=800",
+                    right:    "https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=format&fit=crop&q=80&w=800"
+                }
+            },
+            {
+                id: 5, brand: "Jetour", name: "Jetour T1",
+                engine: "1.5T", model: "2025", seats: 5, hp: "197 HP",
+                gear: "7-Speed DCT",
+                dimensions: "15 ft 5 in x 6 ft 5 in x 6 ft 1 in",
+                groundClearance: "8.1 in",
+                images: {
+                    front:    "https://images.unsplash.com/photo-1520031441872-265e4ff70366?auto=format&fit=crop&q=80&w=800",
+                    back:     "https://images.unsplash.com/photo-1550989460-0adf9ea622e2?auto=format&fit=crop&q=80&w=800",
+                    interior: "https://images.unsplash.com/photo-1502489597346-bf1051566cb8?auto=format&fit=crop&q=80&w=800",
+                    left:     "https://images.unsplash.com/photo-1485291571150-772bcfc10da5?auto=format&fit=crop&q=80&w=800",
+                    right:    "https://images.unsplash.com/photo-1525609004556-c46c7d6cf02b?auto=format&fit=crop&q=80&w=800"
+                }
+            },
+            {
+                id: 6, brand: "Jetour", name: "Jetour T2",
+                engine: "2.0T", model: "2026", seats: 5, hp: "254 HP",
+                gear: "7-Speed DCT",
+                dimensions: "15 ft 8 in x 6 ft 7 in x 6 ft 2 in",
+                groundClearance: "8.7 in",
+                images: {
+                    front:    "https://images.unsplash.com/photo-1533106497176-45ae19e68ba2?auto=format&fit=crop&q=80&w=800",
+                    back:     "https://images.unsplash.com/photo-1616422285623-14fb795e59d6?auto=format&fit=crop&q=80&w=800",
+                    interior: "https://images.unsplash.com/photo-1563720360172-67b8f3dce741?auto=format&fit=crop&q=80&w=800",
+                    left:     "https://images.unsplash.com/photo-1550355291-bbee04a92027?auto=format&fit=crop&q=80&w=800",
+                    right:    "https://images.unsplash.com/photo-1551830820-330a71b99659?auto=format&fit=crop&q=80&w=800"
+                }
+            },
+            {
+                id: 7, brand: "Jetour", name: "Jetour Dashing",
+                engine: "1.6T", model: "2025", seats: 5, hp: "197 HP",
+                gear: "7-Speed DCT",
+                dimensions: "15 ft 1 in x 6 ft 3 in x 5 ft 6 in",
+                groundClearance: "6.3 in",
+                images: {
+                    front:    "https://images.unsplash.com/photo-1614200187524-dc4b892acf16?auto=format&fit=crop&q=80&w=800",
+                    back:     "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&q=80&w=800",
+                    interior: "https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&q=80&w=800",
+                    left:     "https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&q=80&w=800",
+                    right:    "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&q=80&w=800"
+                }
+            },
+            {
+                id: 8, brand: "Beijing", name: "Beijing X7",
+                engine: "1.5T", model: "2025", seats: 5, hp: "188 HP",
+                gear: "7-Speed DCT",
+                dimensions: "15 ft 5 in x 6 ft 2 in x 5 ft 8 in",
+                groundClearance: "7.9 in",
+                images: {
+                    front:    "https://images.unsplash.com/photo-1606152421802-db97b9c7a11b?auto=format&fit=crop&q=80&w=800",
+                    back:     "https://images.unsplash.com/photo-1617469767053-d3b523a0b982?auto=format&fit=crop&q=80&w=800",
+                    interior: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&q=80&w=800",
+                    left:     "https://images.unsplash.com/photo-1617531653332-bd46c24f2068?auto=format&fit=crop&q=80&w=800",
+                    right:    "https://images.unsplash.com/photo-1626668893632-6f3a4466d22f?auto=format&fit=crop&q=80&w=800"
+                }
+            },
+            {
+                id: 9, brand: "Forthing", name: "Forthing M4 U-Tour",
+                engine: "1.5T", model: "2025", seats: 7, hp: "197 HP",
+                gear: "7-Speed DCT",
+                dimensions: "15 ft 11 in x 6 ft 3 in x 5 ft 8 in",
+                groundClearance: "6.7 in",
+                images: {
+                    front:    "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fd?auto=format&fit=crop&q=80&w=800",
+                    back:     "https://images.unsplash.com/photo-1619767886558-efdc259cde1a?auto=format&fit=crop&q=80&w=800",
+                    interior: "https://images.unsplash.com/photo-1605810731668-c11be4737bc6?auto=format&fit=crop&q=80&w=800",
+                    left:     "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&q=80&w=800",
+                    right:    "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&q=80&w=800"
+                }
+            }
+        ];
+
+        const VIEWS = [
+            { key: 'front',    label: 'Front View' },
+            { key: 'back',     label: 'Back View' },
+            { key: 'interior', label: 'Interior' },
+            { key: 'left',     label: 'Left Side' },
+            { key: 'right',    label: 'Right Side' }
+        ];
+
+        const CARD_SPECS = [
+            { icon: 'speed',                     value: c => c.engine },
+            { icon: 'event',                     value: c => c.model },
+            { icon: 'airline_seat_recline_normal', value: c => `${c.seats} Seats` },
+            { icon: 'bolt',                      value: c => c.hp }
+        ];
+
+        const MODAL_SPECS = [
+            { icon: 'speed',                     label: 'Engine Power',              value: c => c.engine },
+            { icon: 'calendar_month',            label: 'Model Year',                value: c => c.model },
+            { icon: 'airline_seat_recline_normal', label: 'Seating Capacity',        value: c => `${c.seats} Seats` },
+            { icon: 'bolt',                      label: 'Horsepower',                value: c => c.hp },
+            { icon: 'account_tree',              label: 'Transmission',              value: c => c.gear },
+            { icon: 'straighten',                label: 'Dimensions (L x W x H)',    value: c => c.dimensions },
+            { icon: 'height',                    label: 'Ground Clearance',          value: c => c.groundClearance }
+        ];
+
+        /* ---------------- DOM refs ---------------- */
+        const grid          = document.getElementById('car-grid');
+        const statusEl      = document.getElementById('results-status');
+        const searchInput   = document.getElementById('search-input');
+        const filterBtns    = Array.from(document.querySelectorAll('.filter-btn'));
+
+        const modal         = document.getElementById('car-modal');
+        const modalContent  = document.getElementById('modal-content');
+        const modalTitle    = document.getElementById('modal-car-title');
+        const modalMainImg  = document.getElementById('modal-main-image');
+        const modalViewLbl  = document.getElementById('modal-view-label');
+        const modalSpecs    = document.getElementById('modal-specs-list');
+        const modalThumbs   = document.getElementById('modal-thumbnails');
+        const modalContact  = document.getElementById('modal-contact-btn');
+
+        let currentFilter = 'All';
+        let currentSearch = '';
+        let lastFocused   = null;
+
+        /* ---------------- Render grid ---------------- */
+        function renderCars() {
+            const term = currentSearch.trim().toLowerCase();
+            const filtered = cars.filter(car =>
+                (currentFilter === 'All' || car.brand === currentFilter) &&
+                car.name.toLowerCase().includes(term)
+            );
+
+            grid.innerHTML = '';
+
+            if (filtered.length === 0) {
+                grid.innerHTML =
+                    '<p class="col-span-full text-center text-slate-400 py-10">No vehicles found matching your criteria.</p>';
+                statusEl.textContent = 'No vehicles found.';
+                return;
+            }
+
+            statusEl.textContent = `${filtered.length} vehicle${filtered.length === 1 ? '' : 's'} shown.`;
+
+            const frag = document.createDocumentFragment();
+
+            filtered.forEach(car => {
+                const article = document.createElement('article');
+                article.className =
+                    'glass-card glass-card--interactive rounded-2xl overflow-hidden group flex flex-col h-full';
+
+                const chips = CARD_SPECS.map(s => `
+                    <div class="bg-white/5 border border-white/10 px-2.5 py-2 rounded-lg flex items-center gap-2">
+                        <span class="material-symbols-outlined text-[16px] text-blue-400" aria-hidden="true">${s.icon}</span>
+                        <span class="text-xs font-medium text-slate-200">${s.value(car)}</span>
+                    </div>`).join('');
+
+                article.innerHTML = `
+                    <button type="button"
+                            class="relative h-56 w-full overflow-hidden bg-black/20 text-left"
+                            data-car-id="${car.id}"
+                            aria-label="View details for ${car.name}">
+                        <img src="${car.images.front}"
+                             alt="${car.name} — front view"
+                             width="800" height="600"
+                             loading="lazy" decoding="async"
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <span class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" aria-hidden="true"></span>
+                        <span class="absolute bottom-4 left-4 right-4 flex justify-between items-end">
+                            <span class="text-xl font-bold text-white shadow-sm">${car.name}</span>
+                        </span>
+                    </button>
+
+                    <div class="p-5 flex-grow flex flex-col justify-between">
+                        <div class="grid grid-cols-2 gap-2 mb-6">${chips}</div>
+
+                        <div class="flex gap-2">
+                            <button type="button"
+                                    data-car-id="${car.id}"
+                                    class="flex-1 py-2.5 rounded-xl bg-white/5 border border-white/20 text-white text-sm font-medium hover:bg-white/10 transition-colors">
+                                Details
+                            </button>
+                            <a href="#contact"
+                               class="flex-1 py-2.5 rounded-xl border border-white/20 text-white text-sm font-medium hover:bg-white/10 transition-colors flex items-center justify-center gap-1 group-hover:border-blue-500/50 group-hover:text-blue-300">
+                                Contact
+                                <span class="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_outward</span>
+                            </a>
                         </div>
-                        <span class="text-sm font-medium text-white">WhatsApp</span>
-                    </a>
+                    </div>
+                `;
 
-                    <a id="footer-messenger" href="#" target="_blank" rel="noopener"
-                       class=
+                frag.appendChild(article);
+            });
+
+            grid.appendChild(frag);
+        }
+
+        /* ---------------- Card click delegation ---------------- */
+        grid.addEventListener('click', e => {
+            const trigger = e.target.closest('[data-car-id]');
+            if (!trigger) return;
+            openModal(Number(trigger.getAttribute('data-car-id')));
+        });
+
+        /* ---------------- Search (debounced) ---------------- */
+        let searchTimer = null;
+        searchInput.addEventListener('input', e => {
+            const value = e.target.value;
+            window.clearTimeout(searchTimer);
+            searchTimer = window.setTimeout(() => {
+                currentSearch = value;
+                renderCars();
+            }, 180);
+        });
+
+        /* ---------------- Filters ---------------- */
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => {
+                    b.classList.remove('is-active');
+                    b.setAttribute('aria-pressed', 'false');
+                });
+                btn.classList.add('is-active');
+                btn.setAttribute('aria-pressed', 'true');
+
+                currentFilter = btn.getAttribute('data-filter');
+                renderCars();
+            });
+        });
+
+        /* ---------------- Modal ---------------- */
+        const FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), select, textarea, [tabindex]:not([tabindex="-1"])';
+
+        function openModal(id) {
+            const car = cars.find(c => c.id === id);
+            if (!car) return;
+
+            lastFocused = document.activeElement;
+
+            modalTitle.textContent = car.name;
+
+            modalSpecs.innerHTML = MODAL_SPECS.map((s, i) => `
+                <li class="flex justify-between items-center ${i < MODAL_SPECS.length - 1 ? 'border-b border-white/5 pb-3' : ''}">
+                    <span class="text-slate-400 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-[18px]" aria-hidden="true">${s.icon}</span>
+                        ${s.label}
+                    </span>
+                    <span class="text-white font-medium text-right ml-2">${s.value(car)}</span>
+                </li>`).join('');
+
+            setMainImage(car.images.front, 'Front View', car.name);
+
+            modalThumbs.innerHTML = '';
+            VIEWS.forEach((view, index) => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className =
+                    'flex-shrink-0 w-20 h-16 rounded-lg overflow-hidden border-2 transition-all ' +
+                    (index === 0 ? 'border-blue-500' : 'border-transparent opacity-60 hover:opacity-100');
+                btn.setAttribute('aria-label', `${car.name} — ${view.label}`);
+                btn.setAttribute('aria-pressed', index === 0 ? 'true' : 'false');
+
+                btn.addEventListener('click', () => {
+                    Array.from(modalThumbs.children).forEach(c => {
+                        c.classList.remove('border-blue-500');
+                        c.classList.add('border-transparent', 'opacity-60');
+                        c.setAttribute('aria-pressed', 'false');
+                    });
+                    btn.classList.remove('border-transparent', 'opacity-60');
+                    btn.classList.add('border-blue-500');
+                    btn.setAttribute('aria-pressed', 'true');
+
+                    setMainImage(car.images[view.key], view.label, car.name);
+                });
+
+                const img = document.createElement('img');
+                img.src = car.images[view.key];
+                img.alt = '';
+                img.width = 160;
+                img.height = 128;
+                img.loading = 'lazy';
+                img.decoding = 'async';
+                img.className = 'w-full h-full object-cover';
+                btn.appendChild(img);
+
+                modalThumbs.appendChild(btn);
+            });
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+
+            void modal.offsetWidth;
+
+            modal.classList.remove('opacity-0');
+            modalContent.classList.remove('scale-95');
+
+            // Focus first focusable element inside dialog
+            const first = modalContent.querySelector(FOCUSABLE);
+            if (first) first.focus({ preventScroll: true });
+        }
+
+        function setMainImage(url, label, carName) {
+            modalMainImg.classList.add('is-fading');
+            window.setTimeout(() => {
+                modalMainImg.src = url;
+                modalMainImg.alt = `${carName} — ${label.toLowerCase()}`;
+                modalViewLbl.textContent = label;
+                modalMainImg.classList.remove('is-fading');
+            }, reduceMotion ? 0 : 150);
+        }
+
+        function closeModal(options) {
+            const opts = options || {};
+            const restoreFocus = opts.restoreFocus !== false;
+
+            // ★ Overflow ကို ချက်ချင်း ပြန်ဖွင့် — ဒါက #contact scroll bug ကို ဖြေရှင်းတယ်
+            document.body.style.overflow = '';
+
+            modal.classList.add('opacity-0');
+            modalContent.classList.add('scale-95');
+
+            window.setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, reduceMotion ? 0 : 300);
+
+            if (restoreFocus && lastFocused && document.contains(lastFocused)) {
+                lastFocused.focus({ preventScroll: true });
+            }
+            lastFocused = null;
+        }
+
+        // Backdrop + close button
+        modal.querySelectorAll('[data-close-modal]').forEach(el => {
+            el.addEventListener('click', () => closeModal());
+        });
+
+        // ESC + Focus trap
+        document.addEventListener('keydown', e => {
+            if (modal.classList.contains('hidden')) return;
+
+            if (e.key === 'Escape') {
+                e.preventDefault();
+                closeModal();
+                return;
+            }
+
+            if (e.key === 'Tab') {
+                const focusables = Array.from(modalContent.querySelectorAll(FOCUSABLE))
+                    .filter(el => el.offsetParent !== null);
+                if (focusables.length === 0) return;
+
+                const first = focusables[0];
+                const last  = focusables[focusables.length - 1];
+
+                if (e.shiftKey && document.activeElement === first) {
+                    e.preventDefault();
+                    last.focus();
+                } else if (!e.shiftKey && document.activeElement === last) {
+                    e.preventDefault();
+                    first.focus();
+                }
+            }
+        });
+
+        // ★ Contact Sales — modal ပိတ်ပြီး contact section သို့ ချောမွေ့စွာ ရောက်စေ
+        modalContact.addEventListener('click', () => {
+            closeModal({ restoreFocus: false });
+            const target = document.getElementById('contact');
+            window.setTimeout(() => {
+                target.scrollIntoView({ behavior: scrollBehavior, block: 'start' });
+            }, 0);
+        });
+
+        /* ---------------- Init ---------------- */
+        renderCars();
+    })();
+    </script>
+</body>
+</html>
