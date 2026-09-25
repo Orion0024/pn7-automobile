@@ -89,6 +89,14 @@
         }
 
         .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
+
+        #car-modal {
+            overflow-y: auto;
+        }
+
+        #modal-content {
+            max-height: 92vh;
+        }
     </style>
 </head>
 <body class="min-h-screen relative overflow-x-hidden">
@@ -205,7 +213,7 @@
                         </div>
                         <h3 class="text-xl font-semibold mb-3">Car Trade-In</h3>
                         <p lang="my" class="text-slate-300 font-light leading-relaxed">
-                            ကားချင်းအလဲအထပ် ဝန်ဆောင်မှုရရှိနိုင်ပါသည်။ လူကြီးမင်းတို့၏ ကားဟောင်းကို တန်ဖိုးသင့်တင့်စွာ အကဲဖြတ်ပေးပါသည်။
+                            ကားချင်းအလဲအထပ် ဝန်ဆောင်မှုရရှိနိုင်ပါသည်။ လူကြီးမင်းတို့၏ ကားဟောင်းက���ု တန်ဖိုးသင့်တင့်စွာ အကဲဖြတ်ပေးပါသည်။
                         </p>
                     </div>
 
@@ -380,123 +388,15 @@
         'use strict';
 
         const cars = [
-            {
-                id: 1, brand: 'Sinotruk', name: 'Sinotruk VGV U70 Pro',
-                engine: '1.5T', model: '2025', seats: 7, hp: '156 HP',
-                gear: '6-Speed Automatic', dimensions: '15 ft 10 in x 6 ft 2 in x 5 ft 7 in',
-                groundClearance: '7.9 in',
-                images: {
-                    front: 'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&q=80&w=800',
-                    back: 'https://images.unsplash.com/photo-1609521263047-f8f205293f24?auto=format&fit=crop&q=80&w=800',
-                    interior: 'https://images.unsplash.com/photo-1600705722908-bab1e61c0b4d?auto=format&fit=crop&q=80&w=800',
-                    left: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&q=80&w=800',
-                    right: 'https://images.unsplash.com/photo-1503376760361-b978a16590c1?auto=format&fit=crop&q=80&w=800'
-                }
-            },
-            {
-                id: 2, brand: 'Sinotruk', name: 'Sinotruk VGV U75 Plus',
-                engine: '2.0T', model: '2025', seats: 7, hp: '224 HP',
-                gear: '8-Speed Automatic', dimensions: '15 ft 10 in x 6 ft 2 in x 5 ft 7 in',
-                groundClearance: '7.9 in',
-                images: {
-                    front: 'https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&q=80&w=800',
-                    back: 'https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?auto=format&fit=crop&q=80&w=800',
-                    interior: 'https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&q=80&w=800',
-                    left: 'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&q=80&w=800',
-                    right: 'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&q=80&w=800'
-                }
-            },
-            {
-                id: 3, brand: 'Sinotruk', name: 'Sinotruk Bolden S7',
-                engine: '2.0T', model: '2025', seats: 7, hp: '224 HP',
-                gear: '8-Speed Automatic', dimensions: '16 ft 8 in x 6 ft 6 in x 6 ft 4 in',
-                groundClearance: '8.3 in',
-                images: {
-                    front: 'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&q=80&w=800',
-                    back: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&q=80&w=800',
-                    interior: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80&w=800',
-                    left: 'https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&q=80&w=800',
-                    right: 'https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&q=80&w=800'
-                }
-            },
-            {
-                id: 4, brand: 'Jetour', name: 'Jetour X50',
-                engine: '1.5T', model: '2025', seats: 5, hp: '156 HP',
-                gear: '6-Speed DCT', dimensions: '14 ft 5 in x 6 ft 0 in x 5 ft 5 in',
-                groundClearance: '7.1 in',
-                images: {
-                    front: 'https://images.unsplash.com/photo-1542282088-fe8426682b8f?auto=format&fit=crop&q=80&w=800',
-                    back: 'https://images.unsplash.com/photo-1619682817481-e994891cd1f5?auto=format&fit=crop&q=80&w=800',
-                    interior: 'https://images.unsplash.com/photo-1486495330452-27756fdf0618?auto=format&fit=crop&q=80&w=800',
-                    left: 'https://images.unsplash.com/photo-1611016186353-9af58c69a533?auto=format&fit=crop&q=80&w=800',
-                    right: 'https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=format&fit=crop&q=80&w=800'
-                }
-            },
-            {
-                id: 5, brand: 'Jetour', name: 'Jetour T1',
-                engine: '1.5T', model: '2025', seats: 5, hp: '197 HP',
-                gear: '7-Speed DCT', dimensions: '15 ft 5 in x 6 ft 5 in x 6 ft 1 in',
-                groundClearance: '8.1 in',
-                images: {
-                    front: 'https://images.unsplash.com/photo-1520031441872-265e4ff70366?auto=format&fit=crop&q=80&w=800',
-                    back: 'https://images.unsplash.com/photo-1550989460-0adf9ea622e2?auto=format&fit=crop&q=80&w=800',
-                    interior: 'https://images.unsplash.com/photo-1502489597346-bf1051566cb8?auto=format&fit=crop&q=80&w=800',
-                    left: 'https://images.unsplash.com/photo-1485291571150-772bcfc10da5?auto=format&fit=crop&q=80&w=800',
-                    right: 'https://images.unsplash.com/photo-1525609004556-c46c7d6cf02b?auto=format&fit=crop&q=80&w=800'
-                }
-            },
-            {
-                id: 6, brand: 'Jetour', name: 'Jetour T2',
-                engine: '2.0T', model: '2026', seats: 5, hp: '254 HP',
-                gear: '7-Speed DCT', dimensions: '15 ft 8 in x 6 ft 7 in x 6 ft 2 in',
-                groundClearance: '8.7 in',
-                images: {
-                    front: 'https://images.unsplash.com/photo-1533106497176-45ae19e68ba2?auto=format&fit=crop&q=80&w=800',
-                    back: 'https://images.unsplash.com/photo-1616422285623-14fb795e59d6?auto=format&fit=crop&q=80&w=800',
-                    interior: 'https://images.unsplash.com/photo-1563720360172-67b8f3dce741?auto=format&fit=crop&q=80&w=800',
-                    left: 'https://images.unsplash.com/photo-1550355291-bbee04a92027?auto=format&fit=crop&q=80&w=800',
-                    right: 'https://images.unsplash.com/photo-1551830820-330a71b99659?auto=format&fit=crop&q=80&w=800'
-                }
-            },
-            {
-                id: 7, brand: 'Jetour', name: 'Jetour Dashing',
-                engine: '1.6T', model: '2025', seats: 5, hp: '197 HP',
-                gear: '7-Speed DCT', dimensions: '15 ft 1 in x 6 ft 3 in x 5 ft 6 in',
-                groundClearance: '6.3 in',
-                images: {
-                    front: 'https://images.unsplash.com/photo-1614200187524-dc4b892acf16?auto=format&fit=crop&q=80&w=800',
-                    back: 'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&q=80&w=800',
-                    interior: 'https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&q=80&w=800',
-                    left: 'https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&q=80&w=800',
-                    right: 'https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&q=80&w=800'
-                }
-            },
-            {
-                id: 8, brand: 'Beijing', name: 'Beijing X7',
-                engine: '1.5T', model: '2025', seats: 5, hp: '188 HP',
-                gear: '7-Speed DCT', dimensions: '15 ft 5 in x 6 ft 2 in x 5 ft 8 in',
-                groundClearance: '7.9 in',
-                images: {
-                    front: 'https://images.unsplash.com/photo-1606152421802-db97b9c7a11b?auto=format&fit=crop&q=80&w=800',
-                    back: 'https://images.unsplash.com/photo-1617469767053-d3b523a0b982?auto=format&fit=crop&q=80&w=800',
-                    interior: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&q=80&w=800',
-                    left: 'https://images.unsplash.com/photo-1617531653332-bd46c24f2068?auto=format&fit=crop&q=80&w=800',
-                    right: 'https://images.unsplash.com/photo-1626668893632-6f3a4466d22f?auto=format&fit=crop&q=80&w=800'
-                }
-            },
-            {
-                id: 9, brand: 'Forthing', name: 'Forthing M4 U-Tour',
-                engine: '1.5T', model: '2025', seats: 7, hp: '197 HP',
-                gear: '7-Speed DCT', dimensions: '15 ft 11 in x 6 ft 3 in x 5 ft 8 in',
-                groundClearance: '6.7 in',
-                images: {
-                    front: 'https://images.unsplash.com/photo-1621007947382-bb3c3994e3fd?auto=format&fit=crop&q=80&w=800',
-                    back: 'https://images.unsplash.com/photo-1619767886558-efdc259cde1a?auto=format&fit=crop&q=80&w=800',
-                    interior: 'https://images.unsplash.com/photo-1605810731668-c11be4737bc6?auto=format&fit=crop&q=80&w=800',
-                    left: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&q=80&w=800',
-                    right: 'https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&q=80&w=800'
-                }
-            }
+            { id: 1, brand: 'Sinotruk', name: 'Sinotruk VGV U70 Pro', engine: '1.5T', model: '2025', seats: 7, hp: '156 HP', gear: '6-Speed Automatic', dimensions: '15 ft 10 in x 6 ft 2 in x 5 ft 7 in', groundClearance: '7.9 in', images: { front: 'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&q=80&w=800', back: 'https://images.unsplash.com/photo-1609521263047-f8f205293f24?auto=format&fit=crop&q=80&w=800', interior: 'https://images.unsplash.com/photo-1600705722908-bab1e61c0b4d?auto=format&fit=crop&q=80&w=800', left: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&q=80&w=800', right: 'https://images.unsplash.com/photo-1503376760361-b978a16590c1?auto=format&fit=crop&q=80&w=800' } },
+            { id: 2, brand: 'Sinotruk', name: 'Sinotruk VGV U75 Plus', engine: '2.0T', model: '2025', seats: 7, hp: '224 HP', gear: '8-Speed Automatic', dimensions: '15 ft 10 in x 6 ft 2 in x 5 ft 7 in', groundClearance: '7.9 in', images: { front: 'https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&q=80&w=800', back: 'https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?auto=format&fit=crop&q=80&w=800', interior: 'https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&q=80&w=800', left: 'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&q=80&w=800', right: 'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&q=80&w=800' } },
+            { id: 3, brand: 'Sinotruk', name: 'Sinotruk Bolden S7', engine: '2.0T', model: '2025', seats: 7, hp: '224 HP', gear: '8-Speed Automatic', dimensions: '16 ft 8 in x 6 ft 6 in x 6 ft 4 in', groundClearance: '8.3 in', images: { front: 'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&q=80&w=800', back: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&q=80&w=800', interior: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80&w=800', left: 'https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&q=80&w=800', right: 'https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&q=80&w=800' } },
+            { id: 4, brand: 'Jetour', name: 'Jetour X50', engine: '1.5T', model: '2025', seats: 5, hp: '156 HP', gear: '6-Speed DCT', dimensions: '14 ft 5 in x 6 ft 0 in x 5 ft 5 in', groundClearance: '7.1 in', images: { front: 'https://images.unsplash.com/photo-1542282088-fe8426682b8f?auto=format&fit=crop&q=80&w=800', back: 'https://images.unsplash.com/photo-1619682817481-e994891cd1f5?auto=format&fit=crop&q=80&w=800', interior: 'https://images.unsplash.com/photo-1486495330452-27756fdf0618?auto=format&fit=crop&q=80&w=800', left: 'https://images.unsplash.com/photo-1611016186353-9af58c69a533?auto=format&fit=crop&q=80&w=800', right: 'https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=format&fit=crop&q=80&w=800' } },
+            { id: 5, brand: 'Jetour', name: 'Jetour T1', engine: '1.5T', model: '2025', seats: 5, hp: '197 HP', gear: '7-Speed DCT', dimensions: '15 ft 5 in x 6 ft 5 in x 6 ft 1 in', groundClearance: '8.1 in', images: { front: 'https://images.unsplash.com/photo-1520031441872-265e4ff70366?auto=format&fit=crop&q=80&w=800', back: 'https://images.unsplash.com/photo-1550989460-0adf9ea622e2?auto=format&fit=crop&q=80&w=800', interior: 'https://images.unsplash.com/photo-1502489597346-bf1051566cb8?auto=format&fit=crop&q=80&w=800', left: 'https://images.unsplash.com/photo-1485291571150-772bcfc10da5?auto=format&fit=crop&q=80&w=800', right: 'https://images.unsplash.com/photo-1525609004556-c46c7d6cf02b?auto=format&fit=crop&q=80&w=800' } },
+            { id: 6, brand: 'Jetour', name: 'Jetour T2', engine: '2.0T', model: '2026', seats: 5, hp: '254 HP', gear: '7-Speed DCT', dimensions: '15 ft 8 in x 6 ft 7 in x 6 ft 2 in', groundClearance: '8.7 in', images: { front: 'https://images.unsplash.com/photo-1533106497176-45ae19e68ba2?auto=format&fit=crop&q=80&w=800', back: 'https://images.unsplash.com/photo-1616422285623-14fb795e59d6?auto=format&fit=crop&q=80&w=800', interior: 'https://images.unsplash.com/photo-1563720360172-67b8f3dce741?auto=format&fit=crop&q=80&w=800', left: 'https://images.unsplash.com/photo-1550355291-bbee04a92027?auto=format&fit=crop&q=80&w=800', right: 'https://images.unsplash.com/photo-1551830820-330a71b99659?auto=format&fit=crop&q=80&w=800' } },
+            { id: 7, brand: 'Jetour', name: 'Jetour Dashing', engine: '1.6T', model: '2025', seats: 5, hp: '197 HP', gear: '7-Speed DCT', dimensions: '15 ft 1 in x 6 ft 3 in x 5 ft 6 in', groundClearance: '6.3 in', images: { front: 'https://images.unsplash.com/photo-1614200187524-dc4b892acf16?auto=format&fit=crop&q=80&w=800', back: 'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&q=80&w=800', interior: 'https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&q=80&w=800', left: 'https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&q=80&w=800', right: 'https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&q=80&w=800' } },
+            { id: 8, brand: 'Beijing', name: 'Beijing X7', engine: '1.5T', model: '2025', seats: 5, hp: '188 HP', gear: '7-Speed DCT', dimensions: '15 ft 5 in x 6 ft 2 in x 5 ft 8 in', groundClearance: '7.9 in', images: { front: 'https://images.unsplash.com/photo-1606152421802-db97b9c7a11b?auto=format&fit=crop&q=80&w=800', back: 'https://images.unsplash.com/photo-1617469767053-d3b523a0b982?auto=format&fit=crop&q=80&w=800', interior: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&q=80&w=800', left: 'https://images.unsplash.com/photo-1617531653332-bd46c24f2068?auto=format&fit=crop&q=80&w=800', right: 'https://images.unsplash.com/photo-1626668893632-6f3a4466d22f?auto=format&fit=crop&q=80&w=800' } },
+            { id: 9, brand: 'Forthing', name: 'Forthing M4 U-Tour', engine: '1.5T', model: '2025', seats: 7, hp: '197 HP', gear: '7-Speed DCT', dimensions: '15 ft 11 in x 6 ft 3 in x 5 ft 8 in', groundClearance: '6.7 in', images: { front: 'https://images.unsplash.com/photo-1621007947382-bb3c3994e3fd?auto=format&fit=crop&q=80&w=800', back: 'https://images.unsplash.com/photo-1619767886558-efdc259cde1a?auto=format&fit=crop&q=80&w=800', interior: 'https://images.unsplash.com/photo-1605810731668-c11be4737bc6?auto=format&fit=crop&q=80&w=800', left: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&q=80&w=800', right: 'https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&q=80&w=800' } }
         ];
 
         const carGrid = document.getElementById('car-grid');
