@@ -1,0 +1,4 @@
+{
+  "scripts": {"build": "tailwindcss -i ./style.css -o ./dist/style.css --minify && cp index.html app.js cars.json dist/ && sed -i 's#href=\"style.css\"#href=\"style.css\"#' dist/index.html"},
+  "devDependencies": {"tailwindcss": "^3.4.17"}
+}
