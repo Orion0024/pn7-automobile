@@ -1,0 +1,36 @@
+[
+  {
+    "id": 1,
+    "brand": "Sinotruk",
+    "name": "Sinotruk VGV U70 Pro",
+    "engine": "1.5T",
+    "model": "2025",
+    "seats": 7,
+    "hp": "156 HP",
+    "gear": "6-Speed Automatic",
+    "dimensions": "15 ft 10 in x 6 ft 2 in x 5 ft 7 in",
+    "groundClearance": "7.9 in",
+    "images": [
+      { "label": "Front View", "link": "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&q=80&w=800" },
+      { "label": "Rear View", "link": "https://images.unsplash.com/photo-1609521263047-f8f205293f24?auto=format&fit=crop&q=80&w=800" },
+      { "label": "Interior", "link": "https://images.unsplash.com/photo-1600705722908-bab1e61c0b4d?auto=format&fit=crop&q=80&w=800" },
+      { "label": "Engine", "link": "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&q=80&w=800" }
+    ]
+  },
+  {
+    "id": 2,
+    "brand": "Jetour",
+    "name": "Jetour T2",
+    "engine": "2.0T",
+    "model": "2026",
+    "seats": 5,
+    "hp": "254 HP",
+    "gear": "7-Speed DCT",
+    "dimensions": "15 ft 8 in x 6 ft 7 in x 6 ft 2 in",
+    "groundClearance": "8.7 in",
+    "images": [
+      { "label": "Front View", "link": "https://images.unsplash.com/photo-1533106497176-45ae19e68ba2?auto=format&fit=crop&q=80&w=800" },
+      { "label": "Interior", "link": "https://images.unsplash.com/photo-1563720360172-67b8f3dce741?auto=format&fit=crop&q=80&w=800" }
+    ]
+  }
+]

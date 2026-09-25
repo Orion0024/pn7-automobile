@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-pt-16">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PN7 Automobile | Premium Car Showroom in Mandalay</title>
+    <meta name="description" content="PN7 Automobile — Mandalay's premium car showroom. Explore Sinotruk, Jetour, Beijing and Forthing vehicles with bank installments and trade-in services.">
+    
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%9A%97%3C/text%3E%3C/svg%3E">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Myanmar:wght@400;500;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Material Icons (Fixed FOUT Error with display=block) -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0&display=block" />
+    
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'Noto Sans Myanmar', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Custom JavaScript -->
+    <script src="main.js" defer></script>
+</head>
+
+<body class="min-h-screen relative overflow-x-hidden">
+    
+    <a href="#showroom" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[200] focus:px-4 focus:py-2 focus:bg-blue-600 focus:text-white focus:rounded-lg">
+        Skip to showroom
+    </a>
+    
+    <header class="fixed top-0 w-full z-50 glass-nav">
+        <!-- HTML code တွေက အရင်အတိုင်း အတူတူပါပဲ -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <button type="button" id="logo-btn" class="flex-shrink-0 flex items-center gap-2" aria-label="PN7 Automobile — back to top">
+                    <span class="material-symbols-outlined text-blue-400 text-3xl" aria-hidden="true">directions_car</span>
+                    <span class="font-bold text-2xl tracking-wider text-white">PN7</span>
+                    <span class="font-light text-sm tracking-widest text-slate-400 mt-1 uppercase hidden sm:block">Automobile</span>
+                </button>
+                
+                <nav class="hidden md:flex space-x-8" aria-label="Main navigation">
+                    <a href="#home" class="text-slate-300 hover:text-white transition-colors text-sm font-medium">Home</a>
+                    <a href="#showroom" class="text-slate-300 hover:text-white transition-colors text-sm font-medium">Showroom</a>
+                    <a href="#services" class="text-slate-300 hover:text-white transition-colors text-sm font-medium">Services</a>
+                    <a href="#contact" class="text-slate-300 hover:text-white transition-colors text-sm font-medium">Contact</a>
+                </nav>
+                
+                <div class="md:hidden flex items-center">
+                    <button type="button" id="mobile-menu-btn" class="text-slate-300 hover:text-white focus:outline-none" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+                        <span class="material-symbols-outlined text-3xl" aria-hidden="true">menu</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="mobile-menu" class="hidden md:hidden glass-card mx-4 mb-4 rounded-xl">
+            <nav class="px-4 pt-2 pb-4 space-y-1" aria-label="Mobile navigation">
+                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-white/5">Home</a>
+                <a href="#showroom" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-white/5">Showroom</a>
+                <a href="#services" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-white/5">Services</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-white/5">Contact</a>
+            </nav>
+        </div>
+    </header>
+    
+    <main>
+        <section id="home" class="pt-32 pb-16 md:pt-40 md:pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex flex-col items-center text-center">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-300 text-xs font-medium uppercase tracking-widest mb-6">
+                <span class="material-symbols-outlined text-sm" aria-hidden="true">stars</span>
+                Premium Dealership
+            </div>
+            <h1 class="text-4xl md:text-6xl font-bold tracking-tight mb-6 leading-tight">
+                Discover Your Next <br />
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Dream Drive</span>
+            </h1>
+            <p class="mt-4 max-w-2xl text-lg text-slate-400 font-light mb-10 leading-relaxed">
+                Welcome to PN7 Automobile. Explore our exclusive collection of premium vehicles with unparalleled service, easy installments, and seamless trade-ins.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#showroom" class="px-8 py-3 rounded-full bg-white text-slate-900 font-medium hover:bg-slate-200 transition-colors flex items-center gap-2 shadow-[0_0_20px_rgba(255,255,255,0.2)]">
+                    View Showroom <span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span>
+                </a>
+                <a href="#contact" class="px-8 py-3 rounded-full glass-card text-white font-medium hover:bg-white/10 transition-colors flex items-center gap-2">
+                    Contact Us
+                </a>
+            </div>
+        </section>
+        
+        <section id="showroom" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-6 gap-4">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-3">Our Collection</h2>
+                    <p class="text-slate-400 font-light">Explore our lineup of cutting-edge SUVs and vehicles.</p>
+                </div>
+                <div class="glass-card flex items-center px-4 py-2 rounded-full w-full md:w-auto">
+                    <label for="search-input" class="sr-only">Search car models</label>
+                    <span class="material-symbols-outlined text-slate-400 mr-2" aria-hidden="true">search</span>
+                    <input type="search" id="search-input" placeholder="Search models..." autocomplete="off" class="bg-transparent border-none outline-none text-sm text-white w-full md:w-48 placeholder-slate-500">
+                </div>
+            </div>
+            
+            <div class="flex flex-wrap gap-2 mb-6" id="filter-container" role="group" aria-label="Filter by brand">
+                <button type="button" class="filter-btn is-active px-5 py-2 rounded-full border border-blue-500 bg-blue-600 text-white text-sm font-medium" data-filter="All" aria-pressed="true">All</button>
+                <button type="button" class="filter-btn px-5 py-2 rounded-full border border-white/10 glass-card text-slate-300 text-sm font-medium hover:bg-white/10" data-filter="Sinotruk" aria-pressed="false">Sinotruk</button>
+                <button type="button" class="filter-btn px-5 py-2 rounded-full border border-white/10 glass-card text-slate-300 text-sm font-medium hover:bg-white/10" data-filter="Jetour" aria-pressed="false">Jetour</button>
+                <button type="button" class="filter-btn px-5 py-2 rounded-full border border-white/10 glass-card text-slate-300 text-sm font-medium hover:bg-white/10" data-filter="Beijing" aria-pressed="false">Beijing</button>
+                <button type="button" class="filter-btn px-5 py-2 rounded-full border border-white/10 glass-card text-slate-300 text-sm font-medium hover:bg-white/10" data-filter="Forthing" aria-pressed="false">Forthing</button>
+            </div>
+            
+            <p id="results-status" class="sr-only" aria-live="polite"></p>
+            <div id="car-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+        </section>
+        
+        <!-- Services Section remains the same -->
+        <section id="services" class="py-20 relative before:absolute before:inset-0 before:bg-slate-900/50 before:-z-10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Our Services</h2>
+                <p class="text-slate-400 mb-16 font-light max-w-2xl mx-auto">We provide exceptional services to make your car buying experience smooth and hassle-free.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    <!-- Trade-in Service -->
+                    <div class="glass-card p-8 rounded-2xl flex flex-col items-center text-center group">
+                        <div class="w-16 h-16 rounded-full bg-blue-500/20 flex items-center justify-center mb-6 text-blue-400 group-hover:scale-110 transition-transform">
+                            <span class="material-symbols-outlined text-3xl" aria-hidden="true">sync_alt</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Car Trade-In</h3>
+                        <p lang="my" class="text-slate-300 font-light leading-relaxed">
+                            ကားချင်းအလဲအထပ် ဝန်ဆောင်မှုရရှိနိုင်ပါသည်။ လူကြီးမင်းတို့၏ လက်ရှိကားကို တန်ဖိုးဖြတ်၍ ကားသစ်ဖြင့် ချိတ်ဆက်လဲလှယ်နိုင်ပါသည်။
+                        </p>
+                    </div>
+                    
+                    <!-- Bank Installment -->
+                    <div class="glass-card p-8 rounded-2xl flex flex-col items-center text-center group">
+                        <div class="w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center mb-6 text-green-400 group-hover:scale-110 transition-transform">
+                            <span class="material-symbols-outlined text-3xl" aria-hidden="true">account_balance</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Bank Installment</h3>
+                        <p lang="my" class="text-slate-300 font-light leading-relaxed">
+                            Bank များနှင့် ချိတ်ဆက်ပြီး အရစ်ကျပေးချေနိုင်ပါသည်။
+                            <span class="block mt-2 text-sm text-blue-300 bg-blue-500/10 py-1 px-3 rounded-full">
+                                * Down Payment 50% အရင်ပေးချေရပါမည်
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer id="contact" class="pt-20 pb-10 border-t border-white/10 relative overflow-hidden">
+        <div class="absolute bottom-0 right-0 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl -z-10 translate-x-1/3 translate-y-1/3" aria-hidden="true"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+                
+                <!-- ဘယ်ဘက်ခြမ်း: အချက်အလက်များနှင့် Contact Buttons များ -->
+                <div class="space-y-8">
+                    <div>
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="material-symbols-outlined text-blue-400 text-3xl" aria-hidden="true">directions_car</span>
+                            <span class="font-bold text-2xl tracking-wider text-white">PN7</span>
+                            <span class="font-light text-sm tracking-widest text-slate-400 mt-1 uppercase">Automobile</span>
+                        </div>
+                        <p class="text-slate-400 font-light text-sm leading-relaxed max-w-sm">
+                            Your trusted partner in finding the perfect vehicle. We deliver quality, reliability, and excellent customer service.
+                        </p>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-3 text-slate-300">
+                            <span class="material-symbols-outlined text-blue-400 mt-1" aria-hidden="true">location_on</span>
+                            <address class="text-sm font-light leading-relaxed not-italic">
+                                No.(413), 62nd Street,<br>
+                                Between 35th &amp; 36th Streets,<br>
+                                MaharAungMyay Township, Mandalay.
+                            </address>
+                        </div>
+                        <div class="flex items-center gap-3 text-slate-300">
+                            <span class="material-symbols-outlined text-blue-400 " aria-hidden="true">call</span>
+                            <div class="flex flex-col">
+                                <a href="tel:09403718599" class="text-sm font-light hover:text-blue-400 transition-colors">09403718599</a>
+                                <a href="tel:09761112344" class="text-sm font-light hover:text-blue-400 transition-colors">09761112344</a>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 text-slate-300">
+                            <span class="material-symbols-outlined text-blue-400" aria-hidden="true">schedule</span>
+                            <p class="text-sm font-light">09:00 AM – 05:00 PM (Daily)</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Buttons (Call, Telegram, Viber) -->
+                    <div>
+                        <h3 class="text-white font-medium text-sm mb-3">Quick Connect with Us</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            
+                            <!-- Phone Call Button -->
+                            <a href="tel:09403718599" class="glass-card hover:bg-blue-600/20 border border-white/10 hover:border-blue-500/50 p-3 rounded-xl flex items-center justify-center gap-2 transition-all group">
+                                <span class="material-symbols-outlined text-blue-400 group-hover:scale-110 transition-transform text-xl">call</span>
+                                <span class="text-xs font-medium text-white">Direct Call</span>
+                            </a>
+                            
+                            <!-- Telegram Button -->
+                            <a href="https://t.me/your_telegram_username" target="_blank" rel="noopener noreferrer" class="glass-card hover:bg-sky-500/20 border border-white/10 hover:border-sky-400/50 p-3 rounded-xl flex items-center justify-center gap-2 transition-all group">
+                                <!-- Telegram SVG Icon -->
+                                <svg class="w-5 h-5 fill-sky-400 group-hover:scale-110 transition-transform" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z" />
+                                </svg>
+                                <span class="text-xs font-medium text-white">Telegram</span>
+                            </a>
+                            
+                            <!-- Viber Button -->
+                            <a href="viber://chat?number=%2B959403718599" target="_blank" rel="noopener noreferrer" class="glass-card hover:bg-purple-600/20 border border-white/10 hover:border-purple-500/50 p-3 rounded-xl flex items-center justify-center gap-2 transition-all group">
+                                <!-- Viber SVG Icon -->
+                                <svg class="w-5 h-5 fill-purple-400 group-hover:scale-110 transition-transform" viewBox="0 0 24 24">
+                                    <path d="M19.78 14.12c-.52-.31-2.09-1.03-2.41-1.15-.32-.12-.55-.18-.78.18-.23.36-.9.12-1.11 1.34-.2.22-.42.25-.74.09-.32-.16-1.36-.5-2.59-1.6-.96-.86-1.61-1.92-1.8-2.24-.19-.32-.02-.5.14-.66.14-.14.32-.37.48-.55.16-.18.21-.31.32-.52.11-.21.05-.39-.03-.55-.08-.16-.78-1.87-1.07-2.56-.28-.67-.56-.58-.78-.59-.2-.01-.43-.01-.66-.01-.23 0-.6.09-.92.43-.32.35-1.22 1.2-1.22 2.92 0 1.72 1.25 3.39 1.43 3.63.18.24 2.47 3.77 5.98 5.29.83.36 1.48.58 1.99.74.84.27 1.6.23 2.2.14.67-.1 2.09-.85 2.38-1.68.29-.83.29-1.54.21-1.68-.08-.15-.31-.23-.83-.54z" />
+                                </svg>
+                                <span class="text-xs font-medium text-white">Viber</span>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ညာဘက်ခြမ်း: Google Maps Embed -->
+                <div class="glass-card p-3 rounded-2xl border border-white/10 h-72 sm:h-80 w-full overflow-hidden">
+                    <iframe title="PN7 Automobile Showroom Location" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9274.521269558072!2d96.1105714809973!3d21.96633619330645!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30cb6d00686b8ab3%3A0x24491642814211ab!2sPN7%20Automobile!5e1!3m2!1sen!2smm!4v1790345680531!5m2!1sen!2smm" width="100%" height="100%" style="border:0; filter: grayscale(0.3) contrast(1.1) opacity(0.9);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="rounded-xl">
+                    </iframe>
+                </div>
+                
+            </div>
+            
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-slate-500 text-sm font-light">&copy; <span id="year"></span> PN7 Automobile. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    
+    <!-- MODAL -->
+    <div id="car-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 sm:p-6 opacity-0 transition-opacity duration-300" role="dialog" aria-modal="true" aria-labelledby="modal-car-title">
+        <div class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm" data-close-modal></div>
+        <div id="modal-content" class="relative w-full max-w-5xl glass-card bg-slate-900/90 border border-white/10 rounded-2xl overflow-hidden shadow-2xl flex flex-col md:flex-row transform scale-95 transition-transform duration-300 max-h-[90vh]">
+            <button type="button" data-close-modal class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-black/80 transition-colors backdrop-blur-md" aria-label="Close dialog">
+                <span class="material-symbols-outlined" aria-hidden="true">close</span>
+            </button>
+            <div class="w-full md:w-3/5 bg-black/40 p-4 sm:p-6 flex flex-col flex-shrink-0">
+                <div class="relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-black mb-4 group">
+                    <img id="modal-main-image" src="" alt="" width="800" height="600" class="w-full h-full object-cover group-hover:scale-105">
+                    <div class="absolute top-4 left-4 glass-card px-3 py-1 rounded-full text-xs font-medium text-white shadow-lg backdrop-blur-md">
+                        <span id="modal-view-label">View</span>
+                    </div>
+                </div>
+                <!-- Dynamic thumbnails will render here -->
+                <div class="flex gap-3 overflow-x-auto py-2 custom-scrollbar" id="modal-thumbnails" role="group" aria-label="Vehicle photo angles"></div>
+            </div>
+            <div class="w-full md:w-2/5 p-6 sm:p-8 flex flex-col overflow-y-auto">
+                <div class="mb-6">
+                    <h2 id="modal-car-title" class="text-3xl font-bold text-white mb-2 leading-tight"></h2>
+                    <p class="text-blue-400 text-sm font-medium tracking-wide uppercase">Premium Collection</p>
+                </div>
+                <div class="space-y-6 mb-8 flex-grow">
+                    <div class="glass-card rounded-xl p-5">
+                        <ul class="space-y-4 text-sm" id="modal-specs-list"></ul>
+                    </div>
+                </div>
+                
+                <div class="pt-6 border-t border-white/10 mt-auto">
+                    <p class="text-sm text-slate-400 mb-4 font-light">Interested in this vehicle? Contact our sales team for availability and financing options.</p>
+                    <button type="button" id="modal-contact-btn" class="w-full block text-center py-3.5 rounded-xl bg-blue-600 text-white font-medium hover:bg-blue-500 transition-colors shadow-[0_0_15px_rgba(37,99,235,0.4)]">
+                        Contact Sales
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
