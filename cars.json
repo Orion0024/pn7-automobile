@@ -4,17 +4,17 @@
     "brand": "Sinotruk",
     "name": "Sinotruk VGV U70 Pro",
     "engine": "1.5T",
-    "model": "2025",
+    "model": "2026",
     "seats": 7,
     "hp": "156 HP",
-    "gear": "6-Speed Automatic",
+    "gear": "7-Speed Automatic",
     "dimensions": "15 ft 10 in x 6 ft 2 in x 5 ft 7 in",
     "groundClearance": "7.9 in",
     "images": [
-      { "label": "Front View", "link": "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&q=80&w=800" },
-      { "label": "Rear View", "link": "https://images.unsplash.com/photo-1609521263047-f8f205293f24?auto=format&fit=crop&q=80&w=800" },
-      { "label": "Interior", "link": "https://images.unsplash.com/photo-1600705722908-bab1e61c0b4d?auto=format&fit=crop&q=80&w=800" },
-      { "label": "Engine", "link": "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&q=80&w=800" }
+      { "label": "Front View", "link": "https://ibb.co/d0gZT76k" },
+      { "label": "Side View", "link": "https://ibb.co/TqrkQvL4" },
+      { "label": "Interior", "link": "https://ibb.co/q3j5JdBZ" },
+      { "label": "Interior", "link": "https://ibb.co/B5WLdyvy" }
     ]
   },
   {
@@ -25,7 +25,7 @@
     "model": "2026",
     "seats": 5,
     "hp": "254 HP",
-    "gear": "7-Speed DCT",
+    "gear": "8-Speed DCT",
     "dimensions": "15 ft 8 in x 6 ft 7 in x 6 ft 2 in",
     "groundClearance": "8.7 in",
     "images": [
