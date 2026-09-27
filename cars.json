@@ -8,29 +8,171 @@
     "seats": 7,
     "hp": "156 HP",
     "gear": "7-Speed Automatic",
-    "dimensions": "15 ft 10 in x 6 ft 2 in x 5 ft 7 in",
+    "dimensions": "15 ft 10 in x 6 ft 2 in x 5 ft 9 in",
     "groundClearance": "7.9 in",
     "images": [
-      { "label": "Front View", "link": "https://i.ibb.co/KjwnPm7V/u70pro-front-img.webp" },
-      { "label": "Side View", "link": "https://i.ibb.co/R479Xvy3/u70pro-left-sideview.webp" },
-      { "label": "Interior", "link": "https://i.ibb.co/9kgtZNnM/u70pro-interior-img-1.webp" },
-      { "label": "Interior", "link": "https://i.ibb.co/bMw1qsYs/u70pro-interior-sideview-1.webp" }
+      {
+        "label": "Front View",
+        "link": "https://i.ibb.co/KjwnPm7V/u70pro-front-img.webp"
+      },
+      {
+        "label": "Side View",
+        "link": "https://i.ibb.co/R479Xvy3/u70pro-left-sideview.webp"
+      },
+      {
+        "label": "Interior",
+        "link": "https://i.ibb.co/bMw1qsYs/u70pro-interior-sideview-1.webp"
+      }
     ]
   },
   {
     "id": 2,
-    "brand": "Jetour",
-    "name": "Jetour T2",
+    "brand": "Sinotruk",
+    "name": "Sinotruk VGV U75 Plus",
+    "engine": "2.0T",
+    "model": "2026",
+    "seats": 7,
+    "hp": "224 HP",
+    "gear": "8-Speed Automatic",
+    "dimensions": "15 ft 10 in x 6 ft 2 in x 5 ft 10 in",
+    "groundClearance": "8.1 in",
+    "images": [
+      {
+        "label": "Front View",
+        "link": "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1200&q=80"
+      },
+      {
+        "label": "Rear View",
+        "link": "https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=format&fit=crop&w=1200&q=80"
+      },
+      {
+        "label": "Interior",
+        "link": "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1200&q=80"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "brand": "Sinotruk",
+    "name": "Sinotruk Bolden S7",
     "engine": "2.0T",
     "model": "2026",
     "seats": 5,
-    "hp": "254 HP",
-    "gear": "8-Speed DCT",
-    "dimensions": "15 ft 8 in x 6 ft 7 in x 6 ft 2 in",
-    "groundClearance": "8.7 in",
+    "hp": "195 HP",
+    "gear": "8-Speed Automatic",
+    "dimensions": "17 ft 7 in x 6 ft 2 in x 6 ft 4 in",
+    "groundClearance": "8.3 in",
     "images": [
-      { "label": "Front View", "link": "https://images.unsplash.com/photo-1533106497176-45ae19e68ba2?auto=format&fit=crop&q=80&w=800" },
-      { "label": "Interior", "link": "https://images.unsplash.com/photo-1563720360172-67b8f3dce741?auto=format&fit=crop&q=80&w=800" }
+      {
+        "label": "Front View",
+        "link": "https://i.ibb.co/bM006wwM/bolden-s7-front-img.webp"
+      },
+      {
+        "label": "Side View",
+        "link": "https://i.ibb.co/Z7tXvWR/bolden-s7-side-img.webp"
+      },
+      {
+        "label": "Rear View",
+        "link": "https://i.ibb.co/XfV7qSBD/bolden-s7-rear-img.webp"
+      },
+      {
+        "label": "Interior",
+        "link": "https://i.ibb.co/twnW6qDd/bolden-s7-inteior-img.webp"
+      },
+      {
+        "label": "Interior",
+        "link": "https://i.ibb.co/gLkPDTPM/bolden-s7-side-interior-img.webp"
+      },
+      {
+        "label": "Interior ",
+        "link": "https://i.ibb.co/fzPjDdNF/bolden-s7-side-interior-img-2.webp"
+      },
+      {
+        "label": "Back Space",
+        "link": "https://i.ibb.co/v4BhRp9r/bolden-s7-back-space-img.webp"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "brand": "Jetour",
+    "name": "Jetour Dashing",
+    "engine": "1.6T",
+    "model": "2025",
+    "seats": 5,
+    "hp": "197 HP",
+    "gear": "7-Speed DCT",
+    "dimensions": "15 ft 1 in x 6 ft 3 in x 5 ft 6 in",
+    "groundClearance": "7.6 in",
+    "images": [
+      {
+        "label": "Front View",
+        "link": "https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=format&fit=crop&w=1200&q=80"
+      },
+      {
+        "label": "Side View",
+        "link": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1200&q=80"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "brand": "Beijing",
+    "name": "Beijing X7",
+    "engine": "1.5T",
+    "model": "2025",
+    "seats": 5,
+    "hp": "188 HP",
+    "gear": "7-Speed DCT",
+    "dimensions": "15 ft 5 in x 6 ft 2 in x 5 ft 8 in",
+    "groundClearance": "7.8 in",
+    "images": [
+      {
+        "label": "Front View",
+        "link": "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=1200&q=80"
+      },
+      {
+        "label": "Rear View",
+        "link": "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80"
+      },
+      {
+        "label": "Interior",
+        "link": "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80"
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "brand": "Forthing",
+    "name": "Forthing M4 U-Tour",
+    "engine": "1.5T",
+    "model": "2026",
+    "seats": 7,
+    "hp": "197 HP",
+    "gear": "7-Speed DCT",
+    "dimensions": "15 ft 11 in x 6 ft 3 in x 5 ft 8 in",
+    "groundClearance": "7.7 in",
+    "images": [
+      {
+        "label": "Front View",
+        "link": "https://i.ibb.co/nMwzkcKm/m4-utour-front-img.webp"
+      },
+      {
+        "label": "Side View",
+        "link": "https://i.ibb.co/zTZpMNy9/m4-utour-side-img.webp"
+      },
+      {
+        "label": "Interior",
+        "link": "https://i.ibb.co/ymFBwHGV/m4-utour-interior-img.webp"
+      },
+      {
+        "label": "Interior",
+        "link": "https://i.ibb.co/bgKD9T7Z/m4-utour-side-interior-img.webp"
+      },
+      {
+        "label": "Interior",
+        "link": "https://i.ibb.co/1tB2vg0W/m4-utour-side-interior-img-2.webp"
+      }
     ]
   }
 ]
