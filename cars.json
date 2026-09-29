@@ -39,15 +39,31 @@
     "images": [
       {
         "label": "Front View",
-        "link": "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1200&q=80"
+        "link": "https://i.ibb.co/d0b9wMHm/u75-plus-front-img.webp"
       },
       {
-        "label": "Rear View",
-        "link": "https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=format&fit=crop&w=1200&q=80"
+        "label": "Side View",
+        "link": "https://i.ibb.co/bgWZpRzX/u75-plus-side-img.webp"
       },
       {
         "label": "Interior",
-        "link": "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1200&q=80"
+        "link": "https://i.ibb.co/m5NQj5Fy/u75-plus-interior-img.webp"
+      },
+      {
+        "label": "Interior",
+        "link": "https://i.ibb.co/8DJKkX0Z/u75-plus-side-interior-img.webp"
+      },
+      {
+        "label": "Interior",
+        "link": "https://i.ibb.co/21ZKySVt/u75-plus-side-interior-img-2.webp"
+      },
+      {
+        "label": "Cargo",
+        "link": "https://i.ibb.co/kgFz8hwJ/u75-plus-cargo-img-1.webp"
+      },
+      {
+        "label": "Cargo",
+        "link": "https://i.ibb.co/yFBknDHy/u75-plus-cargo-img-2.webp"
       }
     ]
   },
@@ -107,11 +123,31 @@
     "images": [
       {
         "label": "Front View",
-        "link": "https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=format&fit=crop&w=1200&q=80"
+        "link": "https://i.ibb.co/Qv32XT0x/jetour-dashing-front-img.webp"
       },
       {
         "label": "Side View",
-        "link": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1200&q=80"
+        "link": "https://i.ibb.co/nswqfbwh/jetour-dashing-side-img-1.webp"
+      },
+      {
+        "label": "Side View",
+        "link": "https://i.ibb.co/sdWjkVhR/jetour-dashing-side-img-2.webp"
+      },
+      {
+        "label": "Rear View",
+        "link": "https://i.ibb.co/JRTSPG3W/jetour-dashing-rear-img.webp"
+      },
+      {
+        "label": "Interior",
+        "link": "https://i.ibb.co/wNHsL62C/jetour-dashing-interior-img.webp"
+      },
+      {
+        "label": "Interior",
+        "link": "https://i.ibb.co/PZZR49Xs/jetour-dashing-side-interior-img-1.webp"
+      },
+      {
+        "label": "Interior",
+        "link": "https://i.ibb.co/4nNtNHBp/jetour-dashing-side-interior-img-2.webp"
       }
     ]
   },
@@ -120,7 +156,7 @@
     "brand": "Beijing",
     "name": "Beijing X7",
     "engine": "1.5T",
-    "model": "2025",
+    "model": "2026",
     "seats": 5,
     "hp": "188 HP",
     "gear": "7-Speed DCT",
@@ -129,15 +165,23 @@
     "images": [
       {
         "label": "Front View",
-        "link": "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=1200&q=80"
+        "link": "https://i.ibb.co/zpdTs80/beihing-x7-front-img.webp"
       },
       {
-        "label": "Rear View",
-        "link": "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80"
+        "label": "Side View",
+        "link": "https://i.ibb.co/jkVLtG0B/beihing-x7-side-img.webp"
       },
       {
         "label": "Interior",
-        "link": "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80"
+        "link": "https://i.ibb.co/TxdmHQct/beihing-x7-interior-img.webp"
+      },
+      {
+        "label": "Interior",
+        "link": "https://i.ibb.co/8nYLcmVF/beihing-x7-side-interior-img.webp"
+      },
+      {
+        "label": "Interior",
+        "link": "https://i.ibb.co/zTKtfq9T/beihing-x7-side-interior-img-2.webp"
       }
     ]
   },
